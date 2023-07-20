@@ -1,39 +1,116 @@
-import Image from "next/image"
-
-import { useCartStore } from "../../stores/useCartStore"
-
-import { Product } from "@/types.d"
+import { Product } from "@/types.d";
+import StarIcon from "@mui/icons-material/Star";
+import { ButtonBase, Grid, Paper, Typography, capitalize } from "@mui/material";
+import Link from "next/link";
+import { useCartStore } from "../../stores/useCartStore";
 
 interface Props {
-	product: Product
+  product: Product;
 }
 
 export default function ProductCard({ product }: Props) {
-	const addToCart = useCartStore(state => state.addToCart)
+  const addToCart = useCartStore((state) => state.addToCart);
+  const renderRatingStars = (rating: any) => {
+    const filledStars = Math.floor(rating);
+    const hasHalfStar = rating % 1 !== 0;
 
-	return (
-		<div className='bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl flex flex-col justify-between p-4 '>
-			<Image
-				src={product.images[0]}
-				alt={product.title}
-				width={100}
-				height={100}
-				className='object-contain w-full h-40'
-			/>
-			<div className='flex-1 flex flex-col justify-between'>
-				<h2 className='text-lg font-semibold'>{product.title}</h2>
-				<p className='text-gray-600 flex-1'>{product.description}</p>
-				<div className='mt-4 flex items-center justify-between'>
-					<span className='text-gray-800 font-semibold'>${product.price.toFixed(2)}</span>
-					<button
-						type='button'
-						className='ml-2 bg-blue-500 text-white font-semibold py-2 px-4 rounded hover:bg-blue-600'
-						onClick={() => addToCart(product)}
-					>
-						Add to Cart
-					</button>
-				</div>
-			</div>
-		</div>
-	)
+    return (
+      <>
+        {[...Array(filledStars)].map((_, index) => (
+          <StarIcon
+            key={`star-${index}`}
+            style={{ color: "grey", fontSize: "16px" }}
+          />
+        ))}
+        {hasHalfStar && (
+          <StarIcon style={{ opacity: 0.5, color: "grey", fontSize: "16px" }} />
+        )}
+      </>
+    );
+  };
+
+  return (
+    
+      <Paper
+        key={product.id}
+        style={{
+          padding: "7px",
+          width: 400,
+          margin: "10px",
+        }}
+      >
+        <Grid container spacing={2}>
+          <Grid item xs={12} sm={4}>
+            <ButtonBase sx={{ width: 128, height: 128 }}>
+              <img
+                style={{
+                  margin: "auto",
+                  display: "block",
+                  maxWidth: "100%",
+                  maxHeight: "100%",
+                }}
+                alt="complex"
+                src={product.thumbnail}
+              />
+            </ButtonBase>
+          </Grid>
+          <Grid item xs={12} sm={8} container direction="column">
+            <Grid item xs container direction="column" spacing={2}>
+              <Grid item xs>
+                <Typography gutterBottom variant="subtitle1" component="div">
+                  {`${capitalize(product.title)}`}
+                </Typography>
+                <Typography variant="body2" gutterBottom>
+                  {product.description}
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                  {renderRatingStars(product.rating)}
+                </Typography>
+              </Grid>
+              <Grid item container alignItems="center" spacing={2}>
+                <Grid item>
+                  <Typography sx={{ cursor: "pointer" }} variant="body2">
+                    <Link
+                      href={{
+                        pathname: "/[id]",
+                        query: { id: product.id },
+                      }}
+                      style={{
+                        textDecoration: "none",
+                        fontSize: "15px",
+                        color: "black",
+                        cursor: "pointer",
+                      }}
+                    >
+                      See more...
+                    </Link>
+                  </Typography>
+                </Grid>
+                <Grid item>
+                  <button
+                    style={{
+                      backgroundColor: "black",
+                      color: "white",
+                      borderRadius: "6px ",
+                      height: "26px",
+                      cursor: "pointer",
+                      width:"93px"
+                    }}
+                    onClick={() => addToCart(product)}
+                  >
+                    Add to Cart
+                  </button>
+                </Grid>
+              </Grid>
+            </Grid>
+            <Grid item>
+              <Typography variant="subtitle1" component="div">
+                ${product.price}
+              </Typography>
+            </Grid>
+          </Grid>
+        </Grid>
+      </Paper>
+    
+  );
 }

@@ -22,7 +22,7 @@ function Cart() {
 			</ul>
 			<div className='flex justify-between items-center mt-4'>
 				<span className='text-lg font-bold'>Total:</span>
-				<span className='text-xl font-bold'>${total.toFixed(2)}</span>
+				${total.toFixed(2)}
 			</div>
 		</section>
 	)
