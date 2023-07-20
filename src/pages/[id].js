@@ -9,15 +9,9 @@ import * as React from "react";
 import {useCartStore} from "../stores/useCartStore";
 import useFromStore from "../hooks/useFromStore"
 import { ButtonBase } from "@mui/material";
-import Header from "../components/ui/Header"
-import Drawer from "../components/ui/Drawer";
-import Cart from "../components/minicart/Cart"
-
-// import useFromStore from "../components/cart/useFormStore";
-// import { useCartStore } from "../components/cart/usecartStore";
-// import { siteTitle } from "../components/layout";
-// import styles from "../components/layout.module.css";
-// import Sidebar from "./page/drawer";
+import Header from "../components/header/Header"
+import Drawer from "../components/header/Drawer";
+import Cart from "../components/cart/Cart"
 
 const Img = styled("img")({
   margin: "auto",
@@ -46,9 +40,7 @@ const Post = ({ post }) => {
 
   return (
     <>
-      {/* <Head>
-        <title>{siteTitle}</title>
-      </Head> */}
+     
       <Header onCartIconClick={handleCartIconClick} />
       <Drawer isOpen={isDrawerOpen} onCartIconClick={handleCartIconClick}>
       <Cart />

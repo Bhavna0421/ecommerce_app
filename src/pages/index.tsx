@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react"
 
-import Header from "../components/ui/Header"
-import Drawer from "../components/ui/Drawer"
-import Cart from "../components/minicart/Cart"
+import Header from "../components/header/Header"
+import Drawer from "../components/header/Drawer"
+import Cart from "../components/cart/Cart"
 import ProductList from "../components/products/ProductList"
 
 import { useProductsStore } from "@/stores/useProductsStore"
