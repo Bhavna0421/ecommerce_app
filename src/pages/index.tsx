@@ -6,6 +6,7 @@ import Cart from "../components/cart/Cart"
 import ProductList from "../components/products/ProductList"
 
 import { useProductsStore } from "@/stores/useProductsStore"
+import CustomDrawer from "../components/header/Drawer"
 
 export default function Home() {
 	const [isDrawerOpen, setIsDrawerOpen] = useState(false)
@@ -23,9 +24,9 @@ export default function Home() {
 	return (
 		<>
 			<Header onCartIconClick={handleCartIconClick} />
-			<Drawer isOpen={isDrawerOpen} onCartIconClick={handleCartIconClick}>
+			<CustomDrawer isOpen={isDrawerOpen} onCartIconClick={handleCartIconClick}>
 				<Cart />
-			</Drawer>
+			</CustomDrawer>
 			<main className='container mx-auto md:w-10/12 py-8 px-4'>
 				{isLoading ? <div className='text-center text-lg'>Loading...</div> : <ProductList products={products} />}
 			</main>

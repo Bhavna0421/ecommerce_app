@@ -32,12 +32,13 @@ export default function ProductCard({ product }: Props) {
   return (
     
       <Paper
-        key={product.id}
-        style={{
-          padding: "7px",
-          width: 400,
-          margin: "10px",
-        }}
+      key={product.id}
+      style={{
+        padding: "7px",
+        width: "100%", // Use a percentage value to make the cards responsive
+        maxWidth: "400px", // Optional: Limit the maximum width to 400px if needed
+        margin: "10px",
+      }}
       >
         <Grid container spacing={2}>
           <Grid item xs={12} sm={4}>

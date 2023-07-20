@@ -13,40 +13,35 @@ export default function Header({ onCartIconClick }: Props) {
   const cart = useFromStore(useCartStore, (state) => state.cart);
 
   return (
-    <header>
-      <div
-        style={{
-          height: "75px",
-          backgroundColor: "black",
-        }}
-      >
-        <div
-          style={{
-            marginLeft: "100px",
-            display: "flex",
-            columnGap: "3rem",
-            alignItems: "flex-end",
-            marginTop: "-10px",
-          }}
+    <header style={{ height: "75px", backgroundColor: "black", position: "sticky", top: -1, zIndex: 100 }}>
+    <div
+      style={{
+        marginLeft: "100px",
+        display: "flex",
+        columnGap: "3rem",
+        alignItems: "flex-end",
+        marginTop: "-10px",
+      }}
+    >
+      <Link href="/" style={{ textDecoration: "none", color: "white" }}>
+        Home
+      </Link>
+      <Link href="/" style={{ textDecoration: "none", color: "white" }}>
+        Details
+      </Link>
+      <div style={{ display: "flex" }}>
+        <IconButton
+          edge="start"
+          aria-label="open drawer"
+          onClick={onCartIconClick}
+          style={{ marginTop: "14px" }}
         >
-          <Link href="/" style={{ textDecoration: "none", color: "white" }}>
-            Home
-          </Link>
-          <Link href="/" style={{ textDecoration: "none", color: "white" }}>
-            Details
-          </Link>
-          <IconButton
-            edge="start"
-            aria-label="open drawer"
-            style={{ marginTop: "14px" }}
-            onClick={onCartIconClick}
-          >
-            <Badge badgeContent={cart?.length} color="error">
-              <FiShoppingCart style={{ color: "white", marginTop: "0px" }} />
-            </Badge>
-          </IconButton>
-        </div>
+          <Badge badgeContent={cart?.length} color="error">
+            <FiShoppingCart style={{ color: "white" }} />
+          </Badge>
+        </IconButton>
       </div>
-    </header>
+    </div>
+  </header>
   );
 }
