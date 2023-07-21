@@ -22,7 +22,7 @@ export default function ProductCard({ product }: Props) {
   const addToCart = useCartStore((state) => {
     return state.addToCart;
   });
-  const [count, setCount] = React.useState(0); 
+  const [count, setCount] = React.useState(0);
 
   function increment() {
     setCount(function (prevCount) {
@@ -109,22 +109,27 @@ export default function ProductCard({ product }: Props) {
               <Typography variant="subtitle1" component="div">
                 ${product.price}
               </Typography>
-              <Button
-                size="small"
+              <button
+                  // background-color: black;
+                  // width: 43px;
+                  // border-radius: 4px;
+                  // color: white;
+                  // height: 26px;
+              
                 style={{
                   color: "black",
-                  border: "1px solid black",
-                  borderRadius:"9999px",
+                   backgroundColor: "lightgrey",
+                  borderRadius:"4px",
                   textTransform: "capitalize",
-                  minWidth: 0,
-                  minHeight: 0,
+                  width: "43px",
+                  height:"26px",
                   fontWeight: 600,
                 }}
-                variant="outlined"
+                 
                 onClick={increment}
               >
                 + {count}
-              </Button>
+              </button>
             </div>
 
             <CardActions>
