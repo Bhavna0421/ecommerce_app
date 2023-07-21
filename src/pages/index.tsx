@@ -27,9 +27,10 @@ export default function Home() {
 			<CustomDrawer isOpen={isDrawerOpen} onCartIconClick={handleCartIconClick}>
 				<Cart />
 			</CustomDrawer>
-			<main className='container mx-auto md:w-10/12 py-8 px-4'>
+			<main style={{marginLeft:"20px",marginRight:"20px"}}> 
 				{isLoading ? <div className='text-center text-lg'>Loading...</div> : <ProductList products={products} />}
 			</main>
+			{/* //100 100 marginn */}
 		</>
 	)
 }

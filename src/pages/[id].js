@@ -6,13 +6,14 @@ import { styled } from "@mui/material/styles";
 import Axios from "axios";
 import { useRouter } from "next/router";
 import * as React from "react";
-import {useCartStore} from "../stores/useCartStore";
-import useFromStore from "../hooks/useFromStore"
+import { useCartStore } from "../stores/useCartStore";
+import useFromStore from "../hooks/useFromStore";
 import { ButtonBase } from "@mui/material";
-import Header from "../components/header/Header"
+import Header from "../components/header/Header";
 import Drawer from "../components/header/Drawer";
-import Cart from "../components/cart/Cart"
+import Cart from "../components/cart/Cart";
 import cogoToast from "cogo-toast";
+import Link from "next/link";
 
 const Img = styled("img")({
   margin: "auto",
@@ -21,8 +22,6 @@ const Img = styled("img")({
   maxHeight: "100%",
 });
 const Post = ({ post }) => {
-
-  
   const router = useRouter();
 
   if (router.isFallback) {
@@ -30,23 +29,20 @@ const Post = ({ post }) => {
   }
   const addToCart = useCartStore((state) => state.addToCart);
   const [sidebarOpen, setSidebarOpen] = React.useState(false);
-  const [isDrawerOpen, setIsDrawerOpen] = React.useState(false)
-  const cart = useFromStore(useCartStore, state => state.cart)
+  const [isDrawerOpen, setIsDrawerOpen] = React.useState(false);
+  const cart = useFromStore(useCartStore, (state) => state.cart);
 
   const handleCartIconClick = () => {
-		setIsDrawerOpen(!isDrawerOpen)
-	}
-
-  // console.log("cart>>>>>>",cart?.length)
+    setIsDrawerOpen(!isDrawerOpen);
+  };
 
   return (
     <>
-     
       <Header onCartIconClick={handleCartIconClick} />
       <Drawer isOpen={isDrawerOpen} onCartIconClick={handleCartIconClick}>
-      <Cart />
+        <Cart />
       </Drawer>
-      <div >
+      <div>
         <div style={{ marginTop: "3rem" }}>
           <Paper
             sx={{
@@ -66,7 +62,6 @@ const Post = ({ post }) => {
                     height: 200,
                   }}
                 >
-                 
                   <Img alt="phone" src={post.thumbnail} />
                 </ButtonBase>
               </Grid>
@@ -90,23 +85,18 @@ const Post = ({ post }) => {
                         backgroundColor: "black",
                         color: "white",
                         borderRadius: "6px ",
-                        height: "41px",
+                        height: "45px",
                         cursor: "pointer",
-                        width: "85px",
-                        
+                        width: "116px",
                       }}
-                      onClick={()=>{
-                        console.log("post>>>>>>>",post)
-                        cogoToast.success("Product added successfully!");
-                        return (
-                        addToCart(post)
-                        )
+                      onClick={() => {
+                        return addToCart(post);
                       }}
                     >
-                      <ShoppingCartOutlinedIcon />{" "}
-                      <span style={{ fontSize: "30px", textAlign: "center" }}>
-                        →
-                      </span>
+                      <Link href="/checkoutPage">
+                        {" "}
+                        <span style={{ textAlign: "center" }}>Buy Now →</span>
+                      </Link>
                     </button>
                   </Grid>
                 </Grid>

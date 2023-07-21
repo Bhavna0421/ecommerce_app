@@ -10,7 +10,29 @@ interface Props {
 }
 
 export default function Header({ onCartIconClick }: Props) {
-  const cart = useFromStore(useCartStore, (state) => state.cart);
+  const cart:any = useFromStore(useCartStore, (state) => state.cart);
+
+  
+// let sum = cart?.reduce(function(acc: any[], curr: { title: any; quantity: any; }) {
+//   let findIndex = acc.findIndex((item: { title: any; }) => item.title === curr.title);
+
+//   if (findIndex === -1) {
+//     acc.push(curr)
+//   } else {
+
+//     acc[findIndex].quantity += curr.quantity
+//   }
+//   return acc;
+// }, [])
+
+let total = 0;
+if (cart) {
+  total = cart.reduce(
+    (acc: number, product: { price: number; quantity: number; }) => (product.quantity as number) + 1 ,
+    0
+  );
+}
+
 
   return (
     <header style={{ height: "75px", backgroundColor: "black", position: "sticky", top: -1, zIndex: 100 }}>
@@ -30,6 +52,7 @@ export default function Header({ onCartIconClick }: Props) {
         Details
       </Link>
       <div style={{ display: "flex" }}>
+        
         <IconButton
           edge="start"
           aria-label="open drawer"

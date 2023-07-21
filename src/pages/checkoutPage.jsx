@@ -1,10 +1,9 @@
-import { Button, Stack, TextField } from "@mui/material";
+import { Box, Button, Divider, Stack, TextField } from "@mui/material";
 import React from "react";
-import styles from "./checkoutPage.module.css";
-import Header from "../components/header/Header"
-import CustomDrawer from "../components/header/Drawer"
-import Cart from "../components/cart/Cart"
-
+import Cart from "../components/cart/Cart";
+import CustomDrawer from "../components/header/Drawer";
+import Header from "../components/header/Header";
+import CheckoutCart from "../components/checkoutCart/checkoutCart"
 const RegisterForm = () => {
   const [isDrawerOpen, setIsDrawerOpen] = React.useState(false)
   const handleCartIconClick = () => {
@@ -16,7 +15,9 @@ const RegisterForm = () => {
 			<CustomDrawer isOpen={isDrawerOpen} onCartIconClick={handleCartIconClick}>
 				<Cart />
 			</CustomDrawer>
-      <form style={{ margin: "50px 100px 4px 80px" }}>
+      <div style={{display:"flex"}}>
+      <div>
+      <form style={{ margin: "54px 205px 4px 46px" }}>
         <div
           style={{
             height: "150px",
@@ -134,6 +135,17 @@ const RegisterForm = () => {
           </div>
         </div>
       </form>
+      </div>
+
+      <div>
+      <Box >
+      <div style={{marginTop:"10px"}}> 
+      <CheckoutCart/>
+      </div>
+      </Box>
+      </div>
+      </div>
+
     </React.Fragment>
   );
 };

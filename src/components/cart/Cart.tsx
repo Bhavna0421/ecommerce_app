@@ -26,9 +26,7 @@ function Cart() {
       </ul>
       <div className="flex flex-col mt-4">
         <button className="bg-black text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
-		<Link href="/checkoutPage" >
-          Checkout Now ${total.toFixed(2)}
-		  </Link>
+          <Link href="/checkoutPage">Checkout Now ${total.toFixed(2)}</Link>
         </button>
 
         <button className="bg-black text-white font-bold py-2 px-4 rounded mt-4 focus:outline-none focus:shadow-outline">

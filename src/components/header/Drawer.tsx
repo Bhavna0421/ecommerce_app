@@ -1,6 +1,5 @@
-import { Drawer, IconButton, List, Divider } from "@mui/material";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
-import { useState } from "react";
+import { Divider, Drawer, IconButton, List } from "@mui/material";
 
 interface Props {
   isOpen: boolean;

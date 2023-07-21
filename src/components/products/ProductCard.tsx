@@ -1,6 +1,17 @@
 import { Product } from "@/types.d";
 import StarIcon from "@mui/icons-material/Star";
-import { ButtonBase, Grid, Paper, Typography, capitalize } from "@mui/material";
+import {
+  Button,
+  ButtonBase,
+  Card,
+  CardActions,
+  CardContent,
+  CardMedia,
+  Grid,
+  Paper,
+  Typography,
+  capitalize,
+} from "@mui/material";
 import Link from "next/link";
 import { useCartStore } from "../../stores/useCartStore";
 import cogoToast from "cogo-toast";
@@ -13,6 +24,8 @@ export default function ProductCard({ product }: Props) {
   const addToCart = useCartStore((state) => {
     return state.addToCart;
   });
+  
+ 
   const renderRatingStars = (rating: any) => {
     const filledStars = Math.floor(rating);
     const hasHalfStar = rating % 1 !== 0;
@@ -32,13 +45,14 @@ export default function ProductCard({ product }: Props) {
     );
   };
 
+
   return (
     <Paper
       key={product.id}
       style={{
         padding: "7px",
-        width: "100%", // Use a percentage value to make the cards responsive
-        maxWidth: "400px", // Optional: Limit the maximum width to 400px if needed
+        width: "100%",
+        maxWidth: "400px",
         margin: "10px",
       }}
     >
@@ -64,55 +78,67 @@ export default function ProductCard({ product }: Props) {
                 {`${capitalize(product.title)}`}
               </Typography>
               <Typography variant="body2" gutterBottom>
-                {product.description}
+                <Link
+                  href={{
+                    pathname: "/[id]",
+                    query: { id: product.id },
+                  }}
+                >
+                  {product.description}
+                </Link>
               </Typography>
               <Typography variant="body2" color="text.secondary">
                 {renderRatingStars(product.rating)}
               </Typography>
             </Grid>
-            <Grid item container alignItems="center" spacing={2}>
-              <Grid item>
-                <Typography sx={{ cursor: "pointer" }} variant="body2">
-                  <Link
-                    href={{
-                      pathname: "/[id]",
-                      query: { id: product.id },
-                    }}
-                    style={{
-                      textDecoration: "none",
-                      fontSize: "15px",
-                      color: "black",
-                      cursor: "pointer",
-                    }}
-                  >
-                    See more...
-                  </Link>
-                </Typography>
-              </Grid>
-              <Grid item>
-                <button
-                  style={{
-                    backgroundColor: "black",
-                    color: "white",
-                    borderRadius: "6px ",
-                    height: "26px",
-                    cursor: "pointer",
-                    width: "93px",
-                  }}
-                  onClick={() => {
-                    cogoToast.success("Product added successfully!");
-                    return addToCart(product);
-                  }}
-                >
-                  Add to Cart
-                </button>
-              </Grid>
-            </Grid>
-          </Grid>
-          <Grid item>
-            <Typography variant="subtitle1" component="div">
-              ${product.price}
-            </Typography>
+            <div style={{ marginLeft: "17px" }}>
+              <Typography variant="subtitle1" component="div">
+                ${product.price} 
+              </Typography>
+            </div>
+
+            <CardActions>
+              <Button
+                size="small"
+                style={{
+                  backgroundColor: "black",
+                  color: "white",
+                  border: "1px solid rgba(34, 34, 34, 0.5)",
+                  textTransform: "capitalize",
+                  minWidth: 0,
+                  minHeight: 0,
+                  fontWeight: 600,
+                }}
+                variant="outlined"
+                onClick={() => {
+                  cogoToast.success("Product added successfully!");
+                  return addToCart(product);
+                }}
+              >
+                Add to cart
+              </Button>
+              <Button
+                size="small"
+                style={{
+                  backgroundColor: "black",
+                  color: "white",
+                  border: "1px solid rgba(34, 34, 34, 0.5)",
+                  textTransform: "capitalize",
+                  minWidth: 0,
+                  minHeight: 0,
+                  fontWeight: 600,
+                }}
+                variant="outlined"
+                onClick={() => {
+                  return addToCart(product);
+                }}
+              >
+                <Link href="/checkoutPage">
+                  {" "}
+                  <span style={{ textAlign: "center" }}>Buy Now</span>
+                </Link>
+              </Button>
+            </CardActions>
           </Grid>
         </Grid>
       </Grid>
