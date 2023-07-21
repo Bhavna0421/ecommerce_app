@@ -12,6 +12,7 @@ interface State {
 interface Actions {
 	addToCart: (Item: Product) => void
 	removeFromCart: (Item: Product) => void
+	increment?: any;
 }
 
 const INITIAL_STATE: State = {
@@ -28,9 +29,11 @@ export const useCartStore = create(
 			totalPrice: INITIAL_STATE.totalPrice,
 			addToCart: (product: Product) => {
 				const cart = get().cart
+				console.log("cart",cart)
 				const cartItem = cart.find(item => item.id === product.id)
 
 				if (cartItem) {
+					console.log(cartItem.quantity)
 					const updatedCart = cart.map(item =>
 						item.id === product.id ? { ...item, quantity: (item.quantity as number) + 1 } : item
 					)
@@ -57,6 +60,7 @@ export const useCartStore = create(
 					totalPrice: state.totalPrice - product.price,
 				}))
 			},
+			
 		}),
 		{
 			name: "cart-storage",

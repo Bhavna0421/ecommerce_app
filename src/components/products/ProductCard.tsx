@@ -3,18 +3,16 @@ import StarIcon from "@mui/icons-material/Star";
 import {
   Button,
   ButtonBase,
-  Card,
   CardActions,
-  CardContent,
-  CardMedia,
   Grid,
   Paper,
   Typography,
   capitalize,
 } from "@mui/material";
+import cogoToast from "cogo-toast";
 import Link from "next/link";
 import { useCartStore } from "../../stores/useCartStore";
-import cogoToast from "cogo-toast";
+import React from "react";
 
 interface Props {
   product: Product;
@@ -24,8 +22,23 @@ export default function ProductCard({ product }: Props) {
   const addToCart = useCartStore((state) => {
     return state.addToCart;
   });
-  
- 
+  const [count, setCount] = React.useState(0); 
+
+  function increment() {
+    setCount(function (prevCount) {
+      return (prevCount += 1);
+    });
+  }
+
+  // function decrement() {
+  //   setCount(function (prevCount) {
+  //     if (prevCount > 0) {
+  //       return (prevCount -= 1);
+  //     } else {
+  //       return (prevCount = 0);
+  //     }
+  //   });
+  // }
   const renderRatingStars = (rating: any) => {
     const filledStars = Math.floor(rating);
     const hasHalfStar = rating % 1 !== 0;
@@ -44,7 +57,6 @@ export default function ProductCard({ product }: Props) {
       </>
     );
   };
-
 
   return (
     <Paper
@@ -91,10 +103,28 @@ export default function ProductCard({ product }: Props) {
                 {renderRatingStars(product.rating)}
               </Typography>
             </Grid>
-            <div style={{ marginLeft: "17px" }}>
+            <div
+              style={{ marginLeft: "17px", display: "flex", columnGap: "67px" }}
+            >
               <Typography variant="subtitle1" component="div">
-                ${product.price} 
+                ${product.price}
               </Typography>
+              <Button
+                size="small"
+                style={{
+                  color: "black",
+                  border: "1px solid black",
+                  borderRadius:"9999px",
+                  textTransform: "capitalize",
+                  minWidth: 0,
+                  minHeight: 0,
+                  fontWeight: 600,
+                }}
+                variant="outlined"
+                onClick={increment}
+              >
+                + {count}
+              </Button>
             </div>
 
             <CardActions>

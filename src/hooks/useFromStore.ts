@@ -6,6 +6,7 @@ export default function useFromStore<T, F>(
 ) {
 	const stateOfStore = store(storeCallback) as F
 	const [state, setState] = useState<F>()
+	
 
 	useEffect(() => {
 		setState(stateOfStore)

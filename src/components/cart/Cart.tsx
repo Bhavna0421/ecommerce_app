@@ -15,14 +15,17 @@ function Cart() {
       0
     );
   }
+  
 
   return (
     <section>
       <h3 className="text-2xl font-bold mb-4">Shopping Cart</h3>
       <ul>
-        {cart?.map((product) => (
+        {cart?.map((product) => {
+          console.log("product?????????",product)
+          return (
           <CartItem key={product.id} product={product} />
-        ))}
+        )})}
       </ul>
       <div className="flex flex-col mt-4">
         <button className="bg-black text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">

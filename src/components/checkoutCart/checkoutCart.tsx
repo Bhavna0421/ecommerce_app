@@ -1,10 +1,8 @@
-import CartItem from "../cart/CartItem";
 
 import { useCartStore } from "../../stores/useCartStore";
 
+import { Divider } from "@mui/material";
 import useFromStore from "../../hooks/useFromStore";
-import Link from "next/link";
-import { Divider, List, Typography } from "@mui/material";
 import CheckoutCartItem from "./checkoutItems";
 
 function CheckoutCart() {
