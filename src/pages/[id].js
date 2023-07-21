@@ -12,6 +12,7 @@ import { ButtonBase } from "@mui/material";
 import Header from "../components/header/Header"
 import Drawer from "../components/header/Drawer";
 import Cart from "../components/cart/Cart"
+import cogoToast from "cogo-toast";
 
 const Img = styled("img")({
   margin: "auto",
@@ -36,7 +37,7 @@ const Post = ({ post }) => {
 		setIsDrawerOpen(!isDrawerOpen)
 	}
 
-  console.log("cart>>>>>>",cart?.length)
+  // console.log("cart>>>>>>",cart?.length)
 
   return (
     <>
@@ -96,6 +97,7 @@ const Post = ({ post }) => {
                       }}
                       onClick={()=>{
                         console.log("post>>>>>>>",post)
+                        cogoToast.success("Product added successfully!");
                         return (
                         addToCart(post)
                         )

@@ -127,11 +127,11 @@ const RegisterForm = () => {
               style={{ marginTop: "7px" }}
             />
           </Stack>
-        </div>
-        <div className={styles.center}>
-          <Button variant="outlined" color="error" type="submit">
-            Place order
-          </Button>
+          <div style={{ marginTop: "30px", marginLeft: "10px" }}>
+            <Button variant="outlined" color="error" type="submit">
+              Place order
+            </Button>
+          </div>
         </div>
       </form>
     </React.Fragment>
