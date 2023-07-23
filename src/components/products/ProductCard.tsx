@@ -15,30 +15,42 @@ import { useCartStore } from "../../stores/useCartStore";
 import React from "react";
 
 interface Props {
-  product: Product;
+  product: Product | any;
 }
 
 export default function ProductCard({ product }: Props) {
   const addToCart = useCartStore((state) => {
     return state.addToCart;
   });
-  const [count, setCount] = React.useState(0);
 
-  function increment() {
-    setCount(function (prevCount) {
-      return (prevCount += 1);
-    });
-  }
+  const [displayedQuantity, setDisplayedQuantity] = React.useState<number>(
+    (product.quantity as number) || 0
+  );
 
-  // function decrement() {
-  //   setCount(function (prevCount) {
-  //     if (prevCount > 0) {
-  //       return (prevCount -= 1);
-  //     } else {
-  //       return (prevCount = 0);
-  //     }
-  //   });
-  // }
+  React.useEffect(() => {
+    // Check if the product still exists in the cart
+    const cartItem = useCartStore
+      .getState()
+      .cart.find((item) => item.id === product.id);
+    if (cartItem) {
+      // If the product exists in the cart, update the displayed quantity
+      setDisplayedQuantity(cartItem.quantity as number);
+    } else {
+      // If the product doesn't exist in the cart (deleted), reset the displayed quantity to 0
+      setDisplayedQuantity(0);
+    }
+  }, [product.id]);
+
+  const incrementQuantity = () => {
+    useCartStore.getState().increment(product.id);
+    setDisplayedQuantity((prevQuantity) => (prevQuantity as number) + 1);
+  };
+
+  // Check if the product is in the cart to enable or disable the button
+  const isInCart = useCartStore
+    .getState()
+    .cart.some((item) => item.id === product.id);
+
   const renderRatingStars = (rating: any) => {
     const filledStars = Math.floor(rating);
     const hasHalfStar = rating % 1 !== 0;
@@ -57,7 +69,7 @@ export default function ProductCard({ product }: Props) {
       </>
     );
   };
-
+  console.log(product.quantity);
   return (
     <Paper
       key={product.id}
@@ -110,26 +122,25 @@ export default function ProductCard({ product }: Props) {
                 ${product.price}
               </Typography>
               <button
-                  // background-color: black;
-                  // width: 43px;
-                  // border-radius: 4px;
-                  // color: white;
-                  // height: 26px;
-              
                 style={{
                   color: "black",
-                   backgroundColor: "lightgrey",
-                  borderRadius:"4px",
+                  backgroundColor: "lightgrey",
+                  borderRadius: "4px",
                   textTransform: "capitalize",
                   width: "43px",
-                  height:"26px",
+                  height: "26px",
                   fontWeight: 600,
                 }}
-                 
-                onClick={increment}
+                onClick={() => {
+                  cogoToast.info("quantity added successfully!");
+                  return incrementQuantity();
+                }}
+                disabled={!isInCart}
               >
-                + {count}
+                +<span>{displayedQuantity}</span>
               </button>
+
+              {/* Display the updated quantity */}
             </div>
 
             <CardActions>

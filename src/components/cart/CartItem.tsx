@@ -12,7 +12,7 @@ interface Props {
 export default function CartItem({ product }: Props) {
   const removeFromCart = useCartStore((state) => state.removeFromCart);
 
-  console.log("productquantity",product.quantity)
+  console.log("productquantity", product.quantity);
   return (
     <div style={{ display: "flex", flexWrap: "wrap", marginBottom: "1rem" }}>
       <Paper
@@ -54,7 +54,7 @@ export default function CartItem({ product }: Props) {
                 title="Remove Item"
                 className="text-red-500 hover:text-red-600"
                 onClick={() => {
-                  cogoToast.info("Removed from the cart")
+                  cogoToast.info("Removed from the cart");
                   return removeFromCart(product);
                 }}
               >
