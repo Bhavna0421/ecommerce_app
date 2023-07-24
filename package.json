@@ -22,6 +22,7 @@
     "cogo-toast": "^4.2.3",
     "eslint": "8.38.0",
     "eslint-config-next": "13.3.0",
+    "mui-image-slider": "^1.0.7",
     "next": "13.3.0",
     "postcss": "8.4.21",
     "react": "18.2.0",
