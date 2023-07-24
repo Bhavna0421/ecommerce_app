@@ -4,15 +4,17 @@ import { Divider, Drawer, IconButton, List } from "@mui/material";
 interface Props {
   isOpen: boolean;
   children: React.ReactNode;
-  onCartIconClick: () => void;
+  onCartIconClick?: () => void;
+  oncartClick?: () =>void;
+  onCloseIcon?: ()=> void;
 }
 
-const CustomDrawer = ({ children, isOpen, onCartIconClick }: Props) => {
+const CustomDrawer = ({ children, isOpen, onCloseIcon}: Props) => {
   return (
     <Drawer
       anchor="right"
       open={isOpen}
-      onClose={onCartIconClick}
+      onClose={onCloseIcon}
       transitionDuration={700}
       PaperProps={{
         style: {
@@ -25,7 +27,7 @@ const CustomDrawer = ({ children, isOpen, onCartIconClick }: Props) => {
         <div style={{ backgroundColor: "#1E1E1E", height: 75 }}>
           <List>
             <IconButton
-              onClick={onCartIconClick}
+              onClick={onCloseIcon}
               style={{ float: "right", margin: "10px 18px 0px 0px" }}
             >
               <CloseOutlinedIcon

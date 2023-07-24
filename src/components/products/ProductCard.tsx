@@ -5,6 +5,7 @@ import {
   ButtonBase,
   CardActions,
   Grid,
+  IconButton,
   Paper,
   Typography,
   capitalize,
@@ -13,6 +14,9 @@ import cogoToast from "cogo-toast";
 import Link from "next/link";
 import { useCartStore } from "../../stores/useCartStore";
 import React from "react";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import { Icon } from "@material-ui/core";
+import styles from "./product.module.css";
 
 interface Props {
   product: Product | any;
@@ -22,7 +26,7 @@ export default function ProductCard({ product }: Props) {
   const addToCart = useCartStore((state) => {
     return state.addToCart;
   });
-
+  const [toggleHeart, settoggleHeart] = React.useState<Boolean>(false);
   const [displayedQuantity, setDisplayedQuantity] = React.useState<number>(
     (product.quantity as number) || 0
   );
@@ -32,6 +36,9 @@ export default function ProductCard({ product }: Props) {
     setDisplayedQuantity((prevQuantity) => (prevQuantity as number) + 1);
   };
 
+  const changeToggle = React.useCallback(() => {
+    settoggleHeart(!toggleHeart);
+  }, []);
   // { logic for disable increment button according to need , Check if the product is in the cart to enable or disable the button}
 
   // const isInCart = useCartStore
@@ -136,8 +143,8 @@ export default function ProductCard({ product }: Props) {
                   color: "white",
                   border: "1px solid rgba(34, 34, 34, 0.5)",
                   textTransform: "capitalize",
-                  minWidth: 0,
-                  minHeight: 0,
+                  width: "98px",
+                  height: "35px",
                   fontWeight: 600,
                 }}
                 variant="outlined"
@@ -155,8 +162,8 @@ export default function ProductCard({ product }: Props) {
                   color: "white",
                   border: "1px solid rgba(34, 34, 34, 0.5)",
                   textTransform: "capitalize",
-                  minWidth: 0,
-                  minHeight: 0,
+                  width: "80px",
+                  height: "35px",
                   fontWeight: 600,
                 }}
                 variant="outlined"
@@ -169,6 +176,13 @@ export default function ProductCard({ product }: Props) {
                   <span style={{ textAlign: "center" }}>Buy Now</span>
                 </Link>
               </Button>
+
+              <FavoriteBorderIcon
+                className={styles.heart}
+                onClick={() => {
+                  return addToCart(product);
+                }}
+              />
             </CardActions>
           </Grid>
         </Grid>
