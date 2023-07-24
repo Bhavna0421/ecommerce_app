@@ -42,6 +42,7 @@ export default function Header({ onCartIconClick, oncartClick }: Props) {
         </Link>
         <div style={{ display: "flex" }}>
           <IconButton
+            title="open cart"
             edge="start"
             aria-label="open drawer"
             onClick={onCartIconClick}
@@ -53,6 +54,7 @@ export default function Header({ onCartIconClick, oncartClick }: Props) {
           </IconButton>
         </div>
         <IconButton
+         title="open wishlist"
           edge="start"
           aria-label="open drawer"
           onClick={oncartClick}

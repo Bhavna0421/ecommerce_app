@@ -122,7 +122,7 @@ export default function ProductCard({ product }: Props) {
                   textTransform: "capitalize",
                   width: "43px",
                   height: "26px",
-                  fontWeight: 600,
+                  // fontWeight: 600,
                 }}
                 onClick={() => {
                   cogoToast.info("quantity added successfully!");

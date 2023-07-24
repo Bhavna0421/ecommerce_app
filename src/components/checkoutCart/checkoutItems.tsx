@@ -43,6 +43,7 @@ export default function CheckoutCartItem({ product }: Props) {
             marginTop: "0px",
             fontSize: "14px",
             color: "black",
+            wordSpacing: "10px",
 
             whiteSpace: "normal",
           }}

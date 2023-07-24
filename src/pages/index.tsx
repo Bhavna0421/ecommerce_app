@@ -1,13 +1,12 @@
 import { useEffect, useState } from "react";
 
-import Header from "../components/header/Header";
-import Drawer from "../components/header/Drawer";
 import Cart from "../components/cart/Cart";
+import Header from "../components/header/Header";
 import ProductList from "../components/products/ProductList";
 
+import WishlistCart from "@/components/wishlistItem/wishlist";
 import { useProductsStore } from "@/stores/useProductsStore";
 import CustomDrawer from "../components/header/Drawer";
-import WishlistCart from "@/components/wishlistItem/wishlist";
 
 export default function Home() {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
@@ -33,7 +32,11 @@ export default function Home() {
         oncartClick={handleWishlistCart}
         onCloseIcon={handleCartIconClick}
       />
-      <CustomDrawer isOpen={isDrawerOpen} onCartIconClick={handleCartIconClick} onCloseIcon={handleCartIconClick}>
+      <CustomDrawer
+        isOpen={isDrawerOpen}
+        onCartIconClick={handleCartIconClick}
+        onCloseIcon={handleCartIconClick}
+      >
         <Cart />
       </CustomDrawer>
       <CustomDrawer

@@ -1,6 +1,7 @@
 .heart {
   margin-left: 28px;
   color: grey;
+  cursor: pointer;
 }
 .heart:hover {
   color: rgb(238, 120, 120);

@@ -1,19 +1,21 @@
-import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
+import { ButtonBase } from "@mui/material";
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
 import { styled } from "@mui/material/styles";
 import Axios from "axios";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import * as React from "react";
-import { useCartStore } from "../stores/useCartStore";
-import useFromStore from "../hooks/useFromStore";
-import { ButtonBase } from "@mui/material";
-import Header from "../components/header/Header";
-import Drawer from "../components/header/Drawer";
 import Cart from "../components/cart/Cart";
-import cogoToast from "cogo-toast";
-import Link from "next/link";
+import {
+  default as CustomDrawer,
+  default as Drawer,
+} from "../components/header/Drawer";
+import Header from "../components/header/Header";
+import WishlistCart from "../components/wishlistItem/wishlist";
+import useFromStore from "../hooks/useFromStore";
+import { useCartStore } from "../stores/useCartStore";
 
 const Img = styled("img")({
   margin: "auto",
@@ -28,20 +30,37 @@ const Post = ({ post }) => {
     return <div>Loading...</div>;
   }
   const addToCart = useCartStore((state) => state.addToCart);
-  const [sidebarOpen, setSidebarOpen] = React.useState(false);
   const [isDrawerOpen, setIsDrawerOpen] = React.useState(false);
-  const cart = useFromStore(useCartStore, (state) => state.cart);
+  const [isCartOpen, setisCartOpen] = React.useState(false);
 
   const handleCartIconClick = () => {
     setIsDrawerOpen(!isDrawerOpen);
   };
+  const handleWishlistCart = () => {
+    setisCartOpen(!isCartOpen);
+  };
 
   return (
     <>
-      <Header onCartIconClick={handleCartIconClick} />
-      <Drawer isOpen={isDrawerOpen} onCartIconClick={handleCartIconClick}>
+      <Header
+        onCartIconClick={handleCartIconClick}
+        oncartClick={handleWishlistCart}
+        onCloseIcon={handleCartIconClick}
+      />
+      <Drawer
+        isOpen={isDrawerOpen}
+        onCartIconClick={handleCartIconClick}
+        onCloseIcon={handleCartIconClick}
+      >
         <Cart />
       </Drawer>
+      <CustomDrawer
+        isOpen={isCartOpen}
+        oncartClick={handleWishlistCart}
+        onCloseIcon={handleWishlistCart}
+      >
+        <WishlistCart />
+      </CustomDrawer>
       <div>
         <div style={{ marginTop: "3rem" }}>
           <Paper

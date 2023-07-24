@@ -53,7 +53,7 @@ function CheckoutCart() {
               color: "grey",
               whiteSpace: "normal",
               //added space between subtotal
-              wordSpacing: "44px",
+              wordSpacing: "89px",
             }}
           >
             <span

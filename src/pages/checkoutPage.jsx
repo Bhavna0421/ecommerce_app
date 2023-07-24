@@ -4,17 +4,38 @@ import Cart from "../components/cart/Cart";
 import CustomDrawer from "../components/header/Drawer";
 import Header from "../components/header/Header";
 import CheckoutCart from "../components/checkoutCart/checkoutCart"
+import WishlistCart from "../components/wishlistItem/wishlist";
 const RegisterForm = () => {
-  const [isDrawerOpen, setIsDrawerOpen] = React.useState(false)
+  const [isDrawerOpen, setIsDrawerOpen] = React.useState(false);
+  const [isCartOpen, setisCartOpen] = React.useState(false);
+
   const handleCartIconClick = () => {
-		setIsDrawerOpen(!isDrawerOpen)
-	}
+    setIsDrawerOpen(!isDrawerOpen);
+  };
+  const handleWishlistCart = () => {
+    setisCartOpen(!isCartOpen);
+  };
   return (
     <React.Fragment>
-      <Header onCartIconClick={handleCartIconClick} />
-			<CustomDrawer isOpen={isDrawerOpen} onCartIconClick={handleCartIconClick}>
-				<Cart />
-			</CustomDrawer>
+      <Header
+        onCartIconClick={handleCartIconClick}
+        oncartClick={handleWishlistCart}
+        onCloseIcon={handleCartIconClick}
+      />
+      <CustomDrawer
+        isOpen={isDrawerOpen}
+        onCartIconClick={handleCartIconClick}
+        onCloseIcon={handleCartIconClick}
+      >
+        <Cart />
+      </CustomDrawer>
+      <CustomDrawer
+        isOpen={isCartOpen}
+        oncartClick={handleWishlistCart}
+        onCloseIcon={handleWishlistCart}
+      >
+        <WishlistCart />
+      </CustomDrawer>
       <div style={{display:"flex"}}>
       <div>
       <form style={{ margin: "54px 205px 4px 46px" }}>
