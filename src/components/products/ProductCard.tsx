@@ -27,29 +27,16 @@ export default function ProductCard({ product }: Props) {
     (product.quantity as number) || 0
   );
 
-  React.useEffect(() => {
-    // Check if the product still exists in the cart
-    const cartItem = useCartStore
-      .getState()
-      .cart.find((item) => item.id === product.id);
-    if (cartItem) {
-      // If the product exists in the cart, update the displayed quantity
-      setDisplayedQuantity(cartItem.quantity as number);
-    } else {
-      // If the product doesn't exist in the cart (deleted), reset the displayed quantity to 0
-      setDisplayedQuantity(0);
-    }
-  }, [product.id]);
-
   const incrementQuantity = () => {
     useCartStore.getState().increment(product.id);
     setDisplayedQuantity((prevQuantity) => (prevQuantity as number) + 1);
   };
 
-  // Check if the product is in the cart to enable or disable the button
-  const isInCart = useCartStore
-    .getState()
-    .cart.some((item) => item.id === product.id);
+  // { logic for disable increment button according to need , Check if the product is in the cart to enable or disable the button}
+
+  // const isInCart = useCartStore
+  //   .getState()
+  //   .cart.some((item) => item.id === product.id);
 
   const renderRatingStars = (rating: any) => {
     const filledStars = Math.floor(rating);
@@ -69,7 +56,6 @@ export default function ProductCard({ product }: Props) {
       </>
     );
   };
-  console.log(product.quantity);
   return (
     <Paper
       key={product.id}
@@ -135,12 +121,11 @@ export default function ProductCard({ product }: Props) {
                   cogoToast.info("quantity added successfully!");
                   return incrementQuantity();
                 }}
-                disabled={!isInCart}
+
+                // disabled={!isInCart}
               >
                 +<span>{displayedQuantity}</span>
               </button>
-
-              {/* Display the updated quantity */}
             </div>
 
             <CardActions>
@@ -158,7 +143,7 @@ export default function ProductCard({ product }: Props) {
                 variant="outlined"
                 onClick={() => {
                   cogoToast.success("Product added successfully!");
-                  return addToCart(product);
+                  return addToCart(product), incrementQuantity();
                 }}
               >
                 Add to cart

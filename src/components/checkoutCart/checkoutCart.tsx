@@ -1,4 +1,3 @@
-
 import { useCartStore } from "../../stores/useCartStore";
 
 import { Divider } from "@mui/material";
@@ -53,6 +52,8 @@ function CheckoutCart() {
               fontSize: "14px",
               color: "grey",
               whiteSpace: "normal",
+              //added space between subtotal
+              wordSpacing: "44px",
             }}
           >
             <span
@@ -64,21 +65,21 @@ function CheckoutCart() {
                 color: "grey",
               }}
             >
-              Subtotal:
+              SubTotal: ${total.toFixed(2)}
             </span>
           </p>
-          <p
+          {/* maybe need for future */}
+          {/* <p
             style={{
               marginBottom: "16px",
               marginTop: "0px",
               fontSize: "14px",
               color: "black",
-
-              whiteSpace: "normal",
+              
             }}
           >
             ${total.toFixed(2)}
-          </p>
+          </p> */}
         </div>
         <div
           style={{
