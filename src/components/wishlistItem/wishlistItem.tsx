@@ -47,8 +47,7 @@ export default function WishlistItem({ product }: Props) {
             </Typography>
             <div style={{ marginLeft: "6.5rem" }}>
               <Typography
-              style={{cursor:"pointer",fontSize:"11.5px"}}
-                className="text-red-500 hover:text-red-600"
+                style={{ cursor: "pointer", fontSize: "11.5px", color: "red" }}
                 onClick={() => {
                   cogoToast.info("Removed from the wishlist");
                   return removeFromCart(product);

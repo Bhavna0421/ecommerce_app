@@ -46,9 +46,17 @@ export default function Home() {
       >
         <WishlistCart />
       </CustomDrawer>
-      <main style={{ marginLeft: "81px", marginRight: "20px" }}>
+      <main style={{ marginLeft: "56px" }}>
         {isLoading ? (
-          <div className="text-center text-lg">Loading...</div>
+          <div
+            style={{
+              textAlign: "center",
+              fontWeight: "14px",
+              marginTop: "15px",
+            }}
+          >
+            Loading...
+          </div>
         ) : (
           <ProductList products={products} />
         )}

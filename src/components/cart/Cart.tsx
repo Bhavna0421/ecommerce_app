@@ -18,19 +18,67 @@ function Cart() {
 
   return (
     <section>
-      <h3 className="text-2xl font-bold mb-4">Shopping Cart</h3>
-      <ul>
+      <h3
+        style={{
+          fontSize: "25px",
+          fontWeight: "bold",
+          marginBottom: "4px",
+          fontStyle: "normal",
+          marginTop: "1px",
+        }}
+      >
+        Shopping Cart
+      </h3>
+      <ul style={{ marginLeft: "1px", paddingLeft: "0px" }}>
         {cart?.map((product) => {
-          console.log("product?????????", product);
+          // console.log("product?????????", product);
           return <CartItem key={product.id} product={product} />;
         })}
       </ul>
-      <div className="flex flex-col mt-4">
-        <button className="bg-black text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
-          <Link href="/checkoutPage">Checkout Now ${total.toFixed(2)}</Link>
+      <div
+        style={{ display: "flex", flexDirection: "column", marginTop: "4px" }}
+      >
+        <button
+          style={{
+            backgroundColor: "black",
+            color: "white",
+            fontWeight: "bold",
+            paddingTop: "2px",
+            paddingBottom: "2px",
+            paddingLeft: "4px",
+            paddingRight: "4px",
+            borderRadius: "4px",
+            height: "43px",
+            border: "none",
+            fontStyle: "normal",
+            fontSize: "16px",
+          }}
+        >
+          <Link
+            href="/checkoutPage"
+            style={{ textDecoration: "none", color: "white" }}
+          >
+            Checkout Now ${total.toFixed(2)}
+          </Link>
         </button>
 
-        <button className="bg-black text-white font-bold py-2 px-4 rounded mt-4 focus:outline-none focus:shadow-outline">
+        <button
+          style={{
+            backgroundColor: "black",
+            color: "white",
+            fontWeight: "bold",
+            paddingTop: "2px",
+            paddingBottom: "2px",
+            paddingLeft: "4px",
+            paddingRight: "4px",
+            borderRadius: "4px",
+            marginTop: "4px",
+            height: "43px",
+            border: "none",
+            fontStyle: "normal",
+            fontSize: "16px",
+          }}
+        >
           View Cart
         </button>
       </div>

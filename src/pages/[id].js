@@ -107,6 +107,7 @@ const Post = ({ post }) => {
                         height: "45px",
                         cursor: "pointer",
                         width: "116px",
+                        fontStyle: "normal",
                       }}
                       onClick={() => {
                         return addToCart(post);

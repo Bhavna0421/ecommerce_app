@@ -54,11 +54,17 @@ export default function ProductCard({ product }: Props) {
         {[...Array(filledStars)].map((_, index) => (
           <StarIcon
             key={`star-${index}`}
-            style={{ color: "grey", fontSize: "16px" }}
+            style={{ color: "rgb(250, 175, 0)", fontSize: "16px" }}
           />
         ))}
         {hasHalfStar && (
-          <StarIcon style={{ opacity: 0.5, color: "grey", fontSize: "16px" }} />
+          <StarIcon
+            style={{
+              opacity: 0.5,
+              color: "rgba(0, 0, 0, 0.26)",
+              fontSize: "16px",
+            }}
+          />
         )}
       </>
     );
@@ -91,7 +97,12 @@ export default function ProductCard({ product }: Props) {
         <Grid item xs={12} sm={8} container direction="column">
           <Grid item xs container direction="column" spacing={2}>
             <Grid item xs>
-              <Typography gutterBottom variant="subtitle1" component="div">
+              <Typography
+                gutterBottom
+                variant="subtitle1"
+                component="div"
+                style={{ fontWeight: "bold", fontStyle: "normal" }}
+              >
                 {`${capitalize(product.title)}`}
               </Typography>
               <Typography variant="body2" gutterBottom>
@@ -100,6 +111,7 @@ export default function ProductCard({ product }: Props) {
                     pathname: "/[id]",
                     query: { id: product.id },
                   }}
+                  style={{ textDecoration: "none", color: "grey" }}
                 >
                   {product.description}
                 </Link>
@@ -111,18 +123,23 @@ export default function ProductCard({ product }: Props) {
             <div
               style={{ marginLeft: "17px", display: "flex", columnGap: "67px" }}
             >
-              <Typography variant="subtitle1" component="div">
+              <Typography
+                variant="subtitle1"
+                component="div"
+                style={{ fontWeight: "bold", fontStyle: "normal" }}
+              >
                 ${product.price}
               </Typography>
               <button
                 style={{
                   color: "black",
-                  backgroundColor: "lightgrey",
                   borderRadius: "4px",
+                  backgroundColor: "white",
                   textTransform: "capitalize",
-                  width: "43px",
+                  width: "32px",
                   height: "26px",
-                  // fontWeight: 600,
+                  border: "1px solid grey",
+                  fontStyle: "normal",
                 }}
                 onClick={() => {
                   cogoToast.info("quantity added successfully!");
@@ -144,8 +161,9 @@ export default function ProductCard({ product }: Props) {
                   border: "1px solid rgba(34, 34, 34, 0.5)",
                   textTransform: "capitalize",
                   width: "98px",
-                  height: "35px",
+                  height: "28px",
                   fontWeight: 600,
+                  fontStyle: "normal",
                 }}
                 variant="outlined"
                 onClick={() => {
@@ -163,15 +181,19 @@ export default function ProductCard({ product }: Props) {
                   border: "1px solid rgba(34, 34, 34, 0.5)",
                   textTransform: "capitalize",
                   width: "80px",
-                  height: "35px",
+                  height: "28px",
                   fontWeight: 600,
+                  fontStyle: "normal",
                 }}
                 variant="outlined"
                 onClick={() => {
                   return addToCart(product);
                 }}
               >
-                <Link href="/checkoutPage">
+                <Link
+                  href="/checkoutPage"
+                  style={{ textDecoration: "none", color: "white" }}
+                >
                   {" "}
                   <span style={{ textAlign: "center" }}>Buy Now</span>
                 </Link>
@@ -179,6 +201,7 @@ export default function ProductCard({ product }: Props) {
 
               <FavoriteBorderIcon
                 className={styles.heart}
+                fontSize="small"
                 onClick={() => {
                   return addToCart(product);
                 }}

@@ -5,11 +5,11 @@ interface Props {
   isOpen: boolean;
   children: React.ReactNode;
   onCartIconClick?: () => void;
-  oncartClick?: () =>void;
-  onCloseIcon?: ()=> void;
+  oncartClick?: () => void;
+  onCloseIcon?: () => void;
 }
 
-const CustomDrawer = ({ children, isOpen, onCloseIcon}: Props) => {
+const CustomDrawer = ({ children, isOpen, onCloseIcon }: Props) => {
   return (
     <Drawer
       anchor="right"
@@ -23,7 +23,7 @@ const CustomDrawer = ({ children, isOpen, onCloseIcon}: Props) => {
         },
       }}
     >
-      <aside className="h-full overflow-y-auto">
+      <aside style={{ height: "full", overflowY: "auto" }}>
         <div style={{ backgroundColor: "#1E1E1E", height: 75 }}>
           <List>
             <IconButton
@@ -37,7 +37,11 @@ const CustomDrawer = ({ children, isOpen, onCloseIcon}: Props) => {
           </List>
         </div>
         <Divider />
-        <main className="bg-white p-4 text-black">{children}</main>
+        <main
+          style={{ backgroundColor: "white", padding: "4px", color: "black" }}
+        >
+          {children}
+        </main>
       </aside>
     </Drawer>
   );

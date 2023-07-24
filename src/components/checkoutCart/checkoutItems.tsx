@@ -13,6 +13,7 @@ export default function CheckoutCartItem({ product }: Props) {
           justifyContent: "space-between",
           alignItems: "center",
           marginBottom: "12px",
+          fontStyle: "normal",
         }}
       >
         <p
@@ -22,6 +23,7 @@ export default function CheckoutCartItem({ product }: Props) {
             fontSize: "14px",
             color: "grey",
             whiteSpace: "normal",
+            fontStyle: "normal",
           }}
         >
           <span
@@ -31,6 +33,7 @@ export default function CheckoutCartItem({ product }: Props) {
               whiteSpace: "normal",
               textTransform: "none",
               color: "black",
+              fontStyle: "normal",
             }}
           >
             {product.quantity} x
@@ -43,9 +46,10 @@ export default function CheckoutCartItem({ product }: Props) {
             marginTop: "0px",
             fontSize: "14px",
             color: "black",
-            wordSpacing: "10px",
-
+            wordSpacing: "15px",
             whiteSpace: "normal",
+            fontStyle: "normal",
+            fontWeight: "bold",
           }}
         >
           ${product.price}

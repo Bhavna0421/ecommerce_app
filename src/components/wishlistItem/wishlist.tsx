@@ -19,10 +19,19 @@ function WishlistCart() {
 
   return (
     <section>
-      <h3 className="text-2xl font-bold mb-4">Wishlist Items</h3>
-      <ul>
+      <h3
+        style={{
+          fontSize: "25px",
+          fontWeight: "bold",
+          marginBottom: "4px",
+          fontStyle: "normal",
+          marginTop: "1px",
+        }}
+      >
+        Wishlist Cart
+      </h3>
+      <ul style={{ marginLeft: "1px", paddingLeft: "0px" }}>
         {cart?.map((product) => {
-        //   console.log("product?????????", product);
           return <WishlistItem key={product.id} product={product} />;
         })}
       </ul>

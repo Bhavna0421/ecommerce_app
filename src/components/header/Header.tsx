@@ -23,6 +23,8 @@ export default function Header({ onCartIconClick, oncartClick }: Props) {
         position: "sticky",
         top: -1,
         zIndex: 100,
+        width: "2000px",
+        marginLeft: "-10px",
       }}
     >
       <div
@@ -34,10 +36,24 @@ export default function Header({ onCartIconClick, oncartClick }: Props) {
           marginTop: "-10px",
         }}
       >
-        <Link href="/" style={{ textDecoration: "none", color: "white" }}>
+        <Link
+          href="/"
+          style={{
+            textDecoration: "none",
+            color: "white",
+            fontStyle: "normal",
+          }}
+        >
           Home
         </Link>
-        <Link href="/" style={{ textDecoration: "none", color: "white" }}>
+        <Link
+          href="/"
+          style={{
+            textDecoration: "none",
+            color: "white",
+            fontStyle: "normal",
+          }}
+        >
           Details
         </Link>
         <div style={{ display: "flex" }}>
@@ -46,7 +62,6 @@ export default function Header({ onCartIconClick, oncartClick }: Props) {
             edge="start"
             aria-label="open drawer"
             onClick={onCartIconClick}
-            style={{ marginTop: "14px" }}
           >
             <Badge badgeContent={cart?.length} color="error">
               <FiShoppingCart style={{ color: "white" }} />
@@ -54,7 +69,7 @@ export default function Header({ onCartIconClick, oncartClick }: Props) {
           </IconButton>
         </div>
         <IconButton
-         title="open wishlist"
+          title="open wishlist"
           edge="start"
           aria-label="open drawer"
           onClick={oncartClick}

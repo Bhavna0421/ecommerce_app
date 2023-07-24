@@ -52,7 +52,12 @@ export default function CartItem({ product }: Props) {
             <div style={{ marginLeft: "6.5rem" }}>
               <button
                 title="Remove Item"
-                className="text-red-500 hover:text-red-600"
+                style={{
+                  color: "red",
+                  border: "none",
+                  backgroundColor: "white",
+                  cursor: "pointer",
+                }}
                 onClick={() => {
                   cogoToast.info("Removed from the cart");
                   return removeFromCart(product);

@@ -25,18 +25,21 @@ function CheckoutCart() {
           color: "black",
           fontWeight: "700",
           whiteSpace: "normal",
+          fontStyle: "normal",
         }}
       >
         Your Order
       </h1>
 
-      <ul>
+      <ul style={{ marginLeft: "-39px" }}>
         {cart?.map((product) => (
           <CheckoutCartItem key={product.id} product={product} />
         ))}
       </ul>
       <Divider />
-      <div className="flex flex-col mt-4">
+      <div
+        style={{ display: "flex", marginTop: "4px", flexDirection: "column" }}
+      >
         <div
           style={{
             display: "flex",
@@ -52,8 +55,9 @@ function CheckoutCart() {
               fontSize: "14px",
               color: "grey",
               whiteSpace: "normal",
+              fontStyle: "normal",
               //added space between subtotal
-              wordSpacing: "89px",
+              wordSpacing: "100px",
             }}
           >
             <span
@@ -63,6 +67,7 @@ function CheckoutCart() {
                 whiteSpace: "normal",
                 textTransform: "none",
                 color: "grey",
+                fontStyle: "normal",
               }}
             >
               SubTotal: ${total.toFixed(2)}
@@ -87,6 +92,7 @@ function CheckoutCart() {
             justifyContent: "space-between",
             alignItems: "center",
             marginBottom: "12px",
+            fontStyle: "normal",
           }}
         >
           <p
@@ -96,6 +102,7 @@ function CheckoutCart() {
               fontSize: "14px",
               color: "grey",
               whiteSpace: "normal",
+              fontStyle: "normal",
             }}
           >
             <span
@@ -105,6 +112,7 @@ function CheckoutCart() {
                 whiteSpace: "normal",
                 textTransform: "none",
                 color: "grey",
+                fontStyle: "normal",
               }}
             >
               Shipping:
@@ -116,7 +124,7 @@ function CheckoutCart() {
               marginTop: "0px",
               fontSize: "14px",
               color: "black",
-
+              fontStyle: "normal",
               whiteSpace: "normal",
             }}
           >
@@ -129,6 +137,7 @@ function CheckoutCart() {
             justifyContent: "space-between",
             alignItems: "center",
             marginBottom: "12px",
+            fontStyle: "normal",
           }}
         >
           <p
@@ -138,6 +147,7 @@ function CheckoutCart() {
               fontSize: "14px",
               color: "grey",
               whiteSpace: "normal",
+              fontStyle: "normal",
             }}
           >
             <span
@@ -147,6 +157,7 @@ function CheckoutCart() {
                 whiteSpace: "normal",
                 textTransform: "none",
                 color: "grey",
+                fontStyle: "normal",
               }}
             >
               Discount:
@@ -158,7 +169,7 @@ function CheckoutCart() {
               marginTop: "0px",
               fontSize: "14px",
               color: "black",
-
+              fontStyle: "normal",
               whiteSpace: "normal",
             }}
           >
@@ -171,6 +182,7 @@ function CheckoutCart() {
             justifyContent: "space-between",
             alignItems: "center",
             marginBottom: "12px",
+            fontStyle: "normal",
           }}
         >
           <p
@@ -180,6 +192,7 @@ function CheckoutCart() {
               fontSize: "14px",
               color: "grey",
               whiteSpace: "normal",
+              fontStyle: "normal",
             }}
           >
             <span
@@ -189,6 +202,7 @@ function CheckoutCart() {
                 whiteSpace: "normal",
                 textTransform: "none",
                 color: "grey",
+                fontStyle: "normal",
               }}
             >
               Total:
@@ -200,8 +214,9 @@ function CheckoutCart() {
               marginTop: "0px",
               fontSize: "14px",
               color: "black",
-
+              fontStyle: "normal",
               whiteSpace: "normal",
+              fontWeight: "bold",
             }}
           >
             ${total.toFixed(2)}
