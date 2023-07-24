@@ -1,21 +1,11 @@
-import CartItem from "../cart/CartItem";
-
-import { useCartStore } from "../../stores/useCartStore";
-
+import { usewishlistStore } from "@/stores/usewishlistcart";
 import useFromStore from "../../hooks/useFromStore";
-import Link from "next/link";
 import WishlistItem from "./wishlistItem";
 
 function WishlistCart() {
-  const cart = useFromStore(useCartStore, (state) => state.cart);
+  const cart = useFromStore(usewishlistStore, (state) => state.cart);
 
-  let total = 0;
-  if (cart) {
-    total = cart.reduce(
-      (acc, product) => acc + product.price * (product.quantity as number),
-      0
-    );
-  }
+  console.log("cart>>>>>>>>?whishlist", cart);
 
   return (
     <section>

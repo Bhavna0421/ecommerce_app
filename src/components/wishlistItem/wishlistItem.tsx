@@ -1,6 +1,6 @@
+import { usewishlistStore } from "@/stores/usewishlistcart";
 import { ButtonBase, Grid, Paper, Typography } from "@mui/material";
 import cogoToast from "cogo-toast";
-import { useCartStore } from "../../stores/useCartStore";
 import { Product } from "../../types";
 
 interface Props {
@@ -8,7 +8,7 @@ interface Props {
 }
 
 export default function WishlistItem({ product }: Props) {
-  const removeFromCart = useCartStore((state) => state.removeFromCart);
+  const removeFromCart = usewishlistStore((state) => state.removeFromCart);
 
   console.log("productquantity", product.quantity);
   return (

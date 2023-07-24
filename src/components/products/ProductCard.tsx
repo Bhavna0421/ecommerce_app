@@ -1,22 +1,21 @@
 import { Product } from "@/types.d";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import StarIcon from "@mui/icons-material/Star";
 import {
   Button,
   ButtonBase,
   CardActions,
   Grid,
-  IconButton,
   Paper,
   Typography,
   capitalize,
 } from "@mui/material";
 import cogoToast from "cogo-toast";
 import Link from "next/link";
-import { useCartStore } from "../../stores/useCartStore";
 import React from "react";
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import { Icon } from "@material-ui/core";
+import { useCartStore } from "../../stores/useCartStore";
 import styles from "./product.module.css";
+import { usewishlistStore } from "@/stores/usewishlistcart";
 
 interface Props {
   product: Product | any;
@@ -26,14 +25,18 @@ export default function ProductCard({ product }: Props) {
   const addToCart = useCartStore((state) => {
     return state.addToCart;
   });
+  const addtowishlist = usewishlistStore((state) => {
+    return state.wishlist;
+  });
+
   const [toggleHeart, settoggleHeart] = React.useState<Boolean>(false);
-  const [displayedQuantity, setDisplayedQuantity] = React.useState<number|any>(
-    (product.quantity as number) || null
-  );
+  const [displayedQuantity, setDisplayedQuantity] = React.useState<
+    number | any
+  >((product.quantity as number) || null);
 
   const incrementQuantity = () => {
     useCartStore.getState().increment(product.id);
-    setDisplayedQuantity((prevQuantity:any) => (prevQuantity as number) + 1);
+    setDisplayedQuantity((prevQuantity: any) => (prevQuantity as number) + 1);
   };
 
   const changeToggle = React.useCallback(() => {
@@ -48,7 +51,7 @@ export default function ProductCard({ product }: Props) {
   const renderRatingStars = (rating: any) => {
     const filledStars = Math.floor(rating);
     const hasHalfStar = rating % 1 !== 0;
-
+// console.log("product",product)
     return (
       <>
         {[...Array(filledStars)].map((_, index) => (
@@ -140,7 +143,7 @@ export default function ProductCard({ product }: Props) {
                   height: "26px",
                   border: "1px solid grey",
                   fontStyle: "normal",
-                  cursor:"pointer"
+                  cursor: "pointer",
                 }}
                 onClick={() => {
                   cogoToast.info("quantity added successfully!");
@@ -204,7 +207,8 @@ export default function ProductCard({ product }: Props) {
                 className={styles.heart}
                 fontSize="small"
                 onClick={() => {
-                  return addToCart(product);
+                  console.log("calling>>>>>>..")
+                  return addtowishlist(product);
                 }}
               />
             </CardActions>

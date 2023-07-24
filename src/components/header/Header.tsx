@@ -5,6 +5,8 @@ import { FiShoppingCart } from "react-icons/fi";
 import { useCartStore } from "../../stores/useCartStore";
 import React from "react";
 import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
+import { usewishlistStore } from "@/stores/usewishlistcart";
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 
 interface Props {
   onCartIconClick: () => void;
@@ -14,6 +16,7 @@ interface Props {
 
 export default function Header({ onCartIconClick, oncartClick }: Props) {
   const cart: any = useFromStore(useCartStore, (state) => state.cart);
+  const whishlist: any = useFromStore(usewishlistStore, (state) => state.cart);
 
   return (
     <header
@@ -75,8 +78,8 @@ export default function Header({ onCartIconClick, oncartClick }: Props) {
           onClick={oncartClick}
           style={{ marginTop: "14px" }}
         >
-          <Badge badgeContent={cart?.length} color="error">
-            <ShoppingBagOutlinedIcon style={{ color: "white" }} />
+          <Badge badgeContent={whishlist?.length} color="error">
+            <FavoriteBorderIcon style={{ color: "white" }} />
           </Badge>
         </IconButton>
       </div>
