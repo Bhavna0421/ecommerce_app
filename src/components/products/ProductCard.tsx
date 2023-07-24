@@ -27,13 +27,13 @@ export default function ProductCard({ product }: Props) {
     return state.addToCart;
   });
   const [toggleHeart, settoggleHeart] = React.useState<Boolean>(false);
-  const [displayedQuantity, setDisplayedQuantity] = React.useState<number>(
-    (product.quantity as number) || 0
+  const [displayedQuantity, setDisplayedQuantity] = React.useState<number|any>(
+    (product.quantity as number) || null
   );
 
   const incrementQuantity = () => {
     useCartStore.getState().increment(product.id);
-    setDisplayedQuantity((prevQuantity) => (prevQuantity as number) + 1);
+    setDisplayedQuantity((prevQuantity:any) => (prevQuantity as number) + 1);
   };
 
   const changeToggle = React.useCallback(() => {
@@ -140,6 +140,7 @@ export default function ProductCard({ product }: Props) {
                   height: "26px",
                   border: "1px solid grey",
                   fontStyle: "normal",
+                  cursor:"pointer"
                 }}
                 onClick={() => {
                   cogoToast.info("quantity added successfully!");

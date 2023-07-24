@@ -23,7 +23,7 @@ export default function Header({ onCartIconClick, oncartClick }: Props) {
         position: "sticky",
         top: -1,
         zIndex: 100,
-        width: "2000px",
+        width: "2030px",
         marginLeft: "-10px",
       }}
     >
