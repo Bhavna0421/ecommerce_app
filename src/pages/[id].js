@@ -113,9 +113,9 @@ const Post = ({ post }) => {
                         return addToCart(post);
                       }}
                     >
-                      <Link href="/checkoutPage">
+                      <Link href="/checkoutPage" style={{textDecoration:"none",color:"white",border:"none"}}>
                         {" "}
-                        <span style={{ textAlign: "center" }}>Buy Now →</span>
+                        <span style={{ textAlign: "center", border:"none", fontSize:"16px"}}>Buy Now →</span>
                       </Link>
                     </button>
                   </Grid>
