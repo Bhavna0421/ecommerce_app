@@ -27,7 +27,7 @@ export const usewishlistStore = create(
         const cart = get().cart;
         
         const cartItem = cart.find((item) => item.id === product.id);
-        console.log("cartItem...", cartItem);
+        // console.log("cartItem...", cartItem);
 
         if (cartItem) {
           const updatedCart = cart.map((item) =>
@@ -41,7 +41,7 @@ export const usewishlistStore = create(
           }));
         } else {
           const updatedCart = [...cart, { ...product, quantity: 1 }];
-          console.log("updatedCartwishlist...", updatedCart);
+          // console.log("updatedCartwishlist...", updatedCart);
           set((state) => ({
             cart: updatedCart,
             totalItems: state.totalItems + 1,

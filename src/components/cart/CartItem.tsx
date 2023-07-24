@@ -12,7 +12,7 @@ interface Props {
 export default function CartItem({ product }: Props) {
   const removeFromCart = useCartStore((state) => state.removeFromCart);
 
-  console.log("productquantity", product.quantity);
+  // console.log("productquantity", product.quantity);
   return (
     <div style={{ display: "flex", flexWrap: "wrap", marginBottom: "1rem" }}>
       <Paper

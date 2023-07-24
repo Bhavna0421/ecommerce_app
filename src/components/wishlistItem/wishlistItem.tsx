@@ -11,7 +11,7 @@ interface Props {
 export default function WishlistItem({ product }: Props) {
   const removeFromCart = usewishlistStore((state) => state.removeFromCart);
 
-  console.log("productquantity", product.id);
+  // console.log("productquantity", product.id);
   return (
     <div style={{ display: "flex", flexWrap: "wrap", marginBottom: "1rem" }}>
       <Paper
