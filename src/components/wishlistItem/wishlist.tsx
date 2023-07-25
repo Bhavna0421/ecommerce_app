@@ -5,8 +5,6 @@ import WishlistItem from "./wishlistItem";
 function WishlistCart() {
   const cart = useFromStore(usewishlistStore, (state) => state.cart);
 
-  // console.log("cart>>>>>>>>?whishlist", cart);
-
   return (
     <section>
       <h3

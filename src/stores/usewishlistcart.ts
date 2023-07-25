@@ -25,26 +25,21 @@ export const usewishlistStore = create(
 
       wishlist: (product: Product) => {
         const cart = get().cart;
-        
+
         const cartItem = cart.find((item) => item.id === product.id);
-        // console.log("cartItem...", cartItem);
 
         if (cartItem) {
           const updatedCart = cart.map((item) =>
-            item.id === product.id
-              ? { ...item, quantity: (item.quantity as number) + 1 }
-              : item
+            item.id === product.id ? item : item
           );
-          set((state) => ({
+          set(() => ({
             cart: updatedCart,
-            totalItems: state.totalItems + 1,
           }));
         } else {
           const updatedCart = [...cart, { ...product, quantity: 1 }];
-          // console.log("updatedCartwishlist...", updatedCart);
-          set((state) => ({
+
+          set(() => ({
             cart: updatedCart,
-            totalItems: state.totalItems + 1,
           }));
         }
       },

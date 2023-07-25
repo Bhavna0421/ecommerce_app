@@ -16,6 +16,7 @@ import React from "react";
 import { useCartStore } from "../../stores/useCartStore";
 import styles from "./product.module.css";
 import { usewishlistStore } from "@/stores/usewishlistcart";
+import FavoriteIcon from "@mui/icons-material/Favorite";
 
 interface Props {
   product: Product | any;
@@ -51,7 +52,7 @@ export default function ProductCard({ product }: Props) {
   const renderRatingStars = (rating: any) => {
     const filledStars = Math.floor(rating);
     const hasHalfStar = rating % 1 !== 0;
-// console.log("product",product)
+    // console.log("product",product)
     return (
       <>
         {[...Array(filledStars)].map((_, index) => (
@@ -203,14 +204,29 @@ export default function ProductCard({ product }: Props) {
                 </Link>
               </Button>
 
-              <FavoriteBorderIcon
-                className={styles.heart}
-                fontSize="small"
-                onClick={() => {
-                  console.log("calling>>>>>>..")
-                  return addtowishlist(product);
-                }}
-              />
+              {toggleHeart ? (
+                <FavoriteIcon
+                  className={styles.heartred}
+                  fontSize="small"
+                  onClick={() => {
+                    console.log("calling>>>>>>..");
+                    console.log("product>>>>>>", product);
+                    changeToggle();
+                    return addtowishlist(product);
+                  }}
+                />
+              ) : (
+                <FavoriteBorderIcon
+                  className={styles.heart}
+                  fontSize="small"
+                  onClick={() => {
+                    console.log("calling>>>>>>..");
+                    console.log("product>>>>>>", product);
+                    changeToggle();
+                    return addtowishlist(product);
+                  }}
+                />
+              )}
             </CardActions>
           </Grid>
         </Grid>
