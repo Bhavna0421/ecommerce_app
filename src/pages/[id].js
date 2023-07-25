@@ -15,7 +15,7 @@ import {
 import Header from "../components/header/Header";
 import WishlistCart from "../components/wishlistItem/wishlist";
 import { useCartStore } from "../stores/useCartStore";
-// import MuiImageSlider from "mui-image-slider"
+import MuiImageSlider from "mui-image-slider";
 
 const Img = styled("img")({
   margin: "auto",
@@ -39,6 +39,7 @@ const Post = ({ post }) => {
   const handleWishlistCart = () => {
     setisCartOpen(!isCartOpen);
   };
+  console.log("postimages", post.images);
 
   return (
     <>
@@ -74,14 +75,14 @@ const Post = ({ post }) => {
           >
             <Grid container spacing={2}>
               <Grid item>
-                <ButtonBase
+                {/* <ButtonBase
                   sx={{
                     margin: "-40px 79px -12px 1px",
                     width: 400,
                     height: 200,
                   }}
-                >
-                  {/* <MuiImageSlider
+                > */}
+                <MuiImageSlider
                   sx={{
                     margin: "auto",
                     display: "block",
@@ -89,9 +90,9 @@ const Post = ({ post }) => {
                     maxHeight: "100%",
                   }}
                   images={post.images}
-                /> */}
-                  <Img alt="phone" src={post.thumbnail} />
-                </ButtonBase>
+                />
+                {/* <Img alt="phone" src={post.thumbnail} /> */}
+                {/* </ButtonBase> */}
               </Grid>
               <Grid item xs={12} sm container>
                 <Grid item xs container direction="column" spacing={2}>
