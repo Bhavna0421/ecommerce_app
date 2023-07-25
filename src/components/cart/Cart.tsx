@@ -31,7 +31,7 @@ function Cart() {
       </h3>
       <ul style={{ marginLeft: "1px", paddingLeft: "0px" }}>
         {cart?.map((product) => {
-          // console.log("product?????????", product);
+         
           return <CartItem key={product.id} product={product} />;
         })}
       </ul>

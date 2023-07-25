@@ -52,7 +52,7 @@ export default function ProductCard({ product }: Props) {
   const renderRatingStars = (rating: any) => {
     const filledStars = Math.floor(rating);
     const hasHalfStar = rating % 1 !== 0;
-    // console.log("product",product)
+  
     return (
       <>
         {[...Array(filledStars)].map((_, index) => (
@@ -209,8 +209,7 @@ export default function ProductCard({ product }: Props) {
                   className={styles.heartred}
                   fontSize="small"
                   onClick={() => {
-                    console.log("calling>>>>>>..");
-                    console.log("product>>>>>>", product);
+                    
                     changeToggle();
                     return addtowishlist(product);
                   }}
@@ -220,8 +219,7 @@ export default function ProductCard({ product }: Props) {
                   className={styles.heart}
                   fontSize="small"
                   onClick={() => {
-                    console.log("calling>>>>>>..");
-                    console.log("product>>>>>>", product);
+                    
                     changeToggle();
                     return addtowishlist(product);
                   }}

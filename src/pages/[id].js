@@ -39,7 +39,7 @@ const Post = ({ post }) => {
   const handleWishlistCart = () => {
     setisCartOpen(!isCartOpen);
   };
-// console.log("images[0]",post.images)
+
   return (
     <>
       <Header
@@ -81,7 +81,7 @@ const Post = ({ post }) => {
                     height: 200,
                   }}
                 >
-                 {/* <MuiImageSlider
+                  {/* <MuiImageSlider
                   sx={{
                     margin: "auto",
                     display: "block",
@@ -90,7 +90,7 @@ const Post = ({ post }) => {
                   }}
                   images={post.images}
                 /> */}
-                <Img alt="phone" src={post.thumbnail} />
+                  <Img alt="phone" src={post.thumbnail} />
                 </ButtonBase>
               </Grid>
               <Grid item xs={12} sm container>
@@ -122,9 +122,24 @@ const Post = ({ post }) => {
                         return addToCart(post);
                       }}
                     >
-                      <Link href="/checkoutPage" style={{textDecoration:"none",color:"white",border:"none"}}>
+                      <Link
+                        href="/checkoutPage"
+                        style={{
+                          textDecoration: "none",
+                          color: "white",
+                          border: "none",
+                        }}
+                      >
                         {" "}
-                        <span style={{ textAlign: "center", border:"none", fontSize:"16px"}}>Buy Now →</span>
+                        <span
+                          style={{
+                            textAlign: "center",
+                            border: "none",
+                            fontSize: "16px",
+                          }}
+                        >
+                          Buy Now →
+                        </span>
                       </Link>
                     </button>
                   </Grid>
