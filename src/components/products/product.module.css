@@ -2,9 +2,11 @@
   margin-left: 28px;
   color: rgb(238, 120, 120);
   cursor: pointer;
+  position: sticky;
 }
 .heartred {
   margin-left: 28px;
   color: rgb(238, 120, 120);
   cursor: pointer;
+  position: sticky;
 }

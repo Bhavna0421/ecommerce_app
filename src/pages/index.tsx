@@ -7,6 +7,7 @@ import ProductList from "../components/products/ProductList";
 import WishlistCart from "@/components/wishlistItem/wishlist";
 import { useProductsStore } from "@/stores/useProductsStore";
 import CustomDrawer from "../components/header/Drawer";
+import Topcontent from "@/components/topcontent/top";
 
 export default function Home() {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
@@ -46,13 +47,14 @@ export default function Home() {
       >
         <WishlistCart />
       </CustomDrawer>
+      <Topcontent/>
       <main style={{ marginLeft: "56px" }}>
         {isLoading ? (
           <div
             style={{
               textAlign: "center",
               fontWeight: "14px",
-              marginTop: "15px",
+              // marginTop: "15px",
             }}
           >
             Loading...

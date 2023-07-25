@@ -6,7 +6,7 @@ import { useCartStore } from "../../stores/useCartStore";
 import React from "react";
 import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
 import { usewishlistStore } from "@/stores/usewishlistcart";
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 
 interface Props {
   onCartIconClick: () => void;
@@ -27,7 +27,8 @@ export default function Header({ onCartIconClick, oncartClick }: Props) {
         top: -1,
         zIndex: 100,
         marginLeft: "-8px",
-        marginRight: "-8px",
+        marginRight:"-8px"
+        
       }}
     >
       <div

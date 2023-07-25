@@ -52,7 +52,7 @@ export default function ProductCard({ product }: Props) {
   const renderRatingStars = (rating: any) => {
     const filledStars = Math.floor(rating);
     const hasHalfStar = rating % 1 !== 0;
-  
+
     return (
       <>
         {[...Array(filledStars)].map((_, index) => (
@@ -156,7 +156,7 @@ export default function ProductCard({ product }: Props) {
                 +<span>{displayedQuantity}</span>
               </button>
             </div>
-
+            {/* <div style={{ position: "sticky" }}> */}
             <CardActions>
               <Button
                 size="small"
@@ -209,7 +209,6 @@ export default function ProductCard({ product }: Props) {
                   className={styles.heartred}
                   fontSize="small"
                   onClick={() => {
-                    
                     changeToggle();
                     return addtowishlist(product);
                   }}
@@ -219,13 +218,13 @@ export default function ProductCard({ product }: Props) {
                   className={styles.heart}
                   fontSize="small"
                   onClick={() => {
-                    
                     changeToggle();
                     return addtowishlist(product);
                   }}
                 />
               )}
             </CardActions>
+            {/* </div> */}
           </Grid>
         </Grid>
       </Grid>
