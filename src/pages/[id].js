@@ -138,16 +138,7 @@ const Post = ({ post }) => {
                   <CardActions>
                     <Button
                       size="small"
-                      style={{
-                        backgroundColor: "black",
-                        color: "white",
-                        border: "1px solid rgba(34, 34, 34, 0.5)",
-                        textTransform: "capitalize",
-                        width: "80px",
-                        height: "28px",
-                        fontWeight: 600,
-                        fontStyle: "normal",
-                      }}
+                     className={styles.button}
                       variant="outlined"
                       onClick={() => {
                         return addToCart(post);
@@ -209,16 +200,7 @@ const Post = ({ post }) => {
                     ) : (
                       <Button
                         size="small"
-                        style={{
-                          backgroundColor: "black",
-                          color: "white",
-                          border: "1px solid rgba(34, 34, 34, 0.5)",
-                          textTransform: "capitalize",
-                          width: "98px",
-                          height: "28px",
-                          fontWeight: 600,
-                          fontStyle: "normal",
-                        }}
+                        className={styles.button}
                         variant="outlined"
                         onClick={() => {
                           cogoToast.success("Product added successfully!");

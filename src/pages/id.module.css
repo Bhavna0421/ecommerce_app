@@ -16,9 +16,38 @@
   cursor: pointer;
   position: sticky;
 }
+.heart:hover {
+  transform: scale(1.2);
+  margin-left: 28px;
+  color: rgb(238, 120, 120);
+  cursor: pointer;
+  position: sticky;
+}
 .heartred {
   margin-left: 28px;
   color: rgb(238, 120, 120);
   cursor: pointer;
   position: sticky;
+}
+.button {
+  background-color: black;
+  color: white;
+  border: 1px solid rgba(34, 34, 34, 0.5);
+  text-transform: capitalize;
+  width: 98px;
+  height: 28px;
+  font-weight: 600;
+  font-style: normal;
+}
+
+.button:hover {
+  transform: scale(1.1);
+  background-color: black;
+  color: white;
+  border: 1px solid rgba(34, 34, 34, 0.5);
+  text-transform: capitalize;
+  width: 98px;
+  height: 28px;
+  font-weight: 600;
+  font-style: normal;
 }
