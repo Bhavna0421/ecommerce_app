@@ -29,7 +29,7 @@ function Cart() {
       >
         Shopping Cart
       </h3>
-      <ul style={{ marginLeft: "1px", paddingLeft: "0px" }}>
+      <ul style={{ marginLeft: "20px", paddingLeft: "0px" }}>
         {cart?.map((product) => {
          
           return <CartItem key={product.id} product={product} />;

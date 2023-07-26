@@ -18,7 +18,7 @@ function WishlistCart() {
       >
         Wishlist Cart
       </h3>
-      <ul style={{ marginLeft: "10px", paddingLeft: "0px" }}>
+      <ul style={{ marginLeft: "11px", paddingLeft: "0px" }}>
         {cart?.map((product) => {
           return <WishlistItem key={product.id} product={product} />;
         })}
