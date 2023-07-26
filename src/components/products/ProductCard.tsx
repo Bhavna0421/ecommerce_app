@@ -53,10 +53,6 @@ export default function ProductCard({ product }: Props) {
   const changequantitybutton = React.useCallback(() => {
     setAddcartclick(!addcartclick);
   }, []);
-  // { logic for disable increment button according to need , Check if the product is in the cart to enable or disable the button}
-  // const isInCart = useCartStore
-  //   .getState()
-  //   .cart.some((item) => item.id === product.id);
 
   const renderRatingStars = (rating: any) => {
     const filledStars = Math.floor(rating);
@@ -153,11 +149,14 @@ export default function ProductCard({ product }: Props) {
                       border: "1px solid grey",
                       fontStyle: "normal",
                       cursor: "pointer",
+                      opacity: displayedQuantity === 1 ? 0.5 : 1,
+                      pointerEvents: displayedQuantity === 1 ? "none" : "auto",
                     }}
                     id="decrease"
                     onClick={() => {
                       decrementQuantity();
                     }}
+                    disabled={displayedQuantity === 1}
                   >
                     -
                   </button>
@@ -188,7 +187,7 @@ export default function ProductCard({ product }: Props) {
               ) : (
                 <Button
                   size="small"
-                 className={styles.button}
+                  className={styles.button}
                   variant="outlined"
                   onClick={() => {
                     cogoToast.success("Product added successfully!");
