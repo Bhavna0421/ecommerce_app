@@ -33,11 +33,23 @@ export default function ProductCard({ product }: Props) {
   const [toggleHeart, settoggleHeart] = React.useState<Boolean>(false);
   const [displayedQuantity, setDisplayedQuantity] = React.useState<
     number | any
-  >((product.quantity as number) || null);
+  >((product.quantity as number) || 1);
+  const [displayeddecrementQuantity, setdisplayeddecrementQuantity] =
+    React.useState<number | any>((product.quantity as number) || 1);
 
   const incrementQuantity = () => {
     useCartStore.getState().increment(product.id);
+    // useCartStore.getState().decrement(product.id);
     setDisplayedQuantity((prevQuantity: any) => (prevQuantity as number) + 1);
+    // setDisplayedQuantity((prevQuantity: any) => (prevQuantity as number) - 1);
+  };
+  const decrementQuantity = () => {
+    useCartStore.getState().decrement(product.id);
+    // useCartStore.getState().decrement(product.id);
+    setdisplayeddecrementQuantity(
+      (prevQuantity: any) => (prevQuantity as number) - 1
+    );
+    // setDisplayedQuantity((prevQuantity: any) => (prevQuantity as number) - 1);
   };
 
   const changeToggle = React.useCallback(() => {
@@ -87,14 +99,9 @@ export default function ProductCard({ product }: Props) {
         <Grid item xs={12} sm={4}>
           <ButtonBase sx={{ width: 128, height: 128 }}>
             <img
-              style={{
-                margin: "auto",
-                display: "block",
-                maxWidth: "100%",
-                maxHeight: "100%",
-              }}
+              className={styles.images}
               alt="complex"
-              src={product.thumbnail}
+              src={product.images[0]}
             />
           </ButtonBase>
         </Grid>
@@ -134,7 +141,7 @@ export default function ProductCard({ product }: Props) {
               >
                 ${product.price}
               </Typography>
-              <button
+              {/* <button
                 style={{
                   color: "black",
                   borderRadius: "4px",
@@ -154,30 +161,81 @@ export default function ProductCard({ product }: Props) {
                 // disabled={!isInCart}
               >
                 +<span>{displayedQuantity}</span>
-              </button>
+              </button> */}
             </div>
-            {/* <div style={{ position: "sticky" }}> */}
+
             <CardActions>
-              <Button
-                size="small"
-                style={{
-                  backgroundColor: "black",
-                  color: "white",
-                  border: "1px solid rgba(34, 34, 34, 0.5)",
-                  textTransform: "capitalize",
-                  width: "98px",
-                  height: "28px",
-                  fontWeight: 600,
-                  fontStyle: "normal",
-                }}
-                variant="outlined"
-                onClick={() => {
-                  cogoToast.success("Product added successfully!");
-                  return addToCart(product), incrementQuantity();
-                }}
-              >
-                Add to cart
-              </Button>
+              {product?.id ? (
+                <Button
+                  size="small"
+                  style={{
+                    backgroundColor: "black",
+                    color: "white",
+                    border: "1px solid rgba(34, 34, 34, 0.5)",
+                    textTransform: "capitalize",
+                    width: "98px",
+                    height: "28px",
+                    fontWeight: 600,
+                    fontStyle: "normal",
+                  }}
+                  variant="outlined"
+                  onClick={() => {
+                    cogoToast.success("Product added successfully!");
+                    console.log("product>>>>>>>>>>", product);
+                    return addToCart(product), incrementQuantity();
+                  }}
+                >
+                  Add to cart
+                </Button>
+              ) : (
+                <>
+                  <button
+                    style={{
+                      color: "black",
+                      borderRadius: "4px",
+                      backgroundColor: "white",
+                      textTransform: "capitalize",
+                      width: "25px",
+                      height: "23px",
+                      border: "1px solid grey",
+                      fontStyle: "normal",
+                      cursor: "pointer",
+                    }}
+                    id="decrease"
+                    onClick={() => {
+                      decrementQuantity();
+                    }}
+                  >
+                    -
+                  </button>
+                  <span style={{ marginLeft: "5px" }} id="value">
+                    {" "}
+                    {displayedQuantity}
+                  </span>
+                  <button
+                    style={{
+                      color: "black",
+                      borderRadius: "4px",
+                      backgroundColor: "white",
+                      textTransform: "capitalize",
+                      width: "25px",
+                      height: "23px",
+                      border: "1px solid grey",
+                      fontStyle: "normal",
+                      cursor: "pointer",
+                    }}
+                    id="increase"
+                    onClick={() => {
+                      incrementQuantity();
+                    }}
+                  >
+                    +
+                  </button>
+                </>
+              )}
+
+              {/* Buy Now button  */}
+
               <Button
                 size="small"
                 style={{
@@ -224,7 +282,6 @@ export default function ProductCard({ product }: Props) {
                 />
               )}
             </CardActions>
-            {/* </div> */}
           </Grid>
         </Grid>
       </Grid>

@@ -32,7 +32,7 @@ export default function CartItem({ product }: Props) {
               maxHeight: "100%",
             }}
             alt="complex"
-            src={product.thumbnail}
+            src={product.images[0]}
           />
         </ButtonBase>
 

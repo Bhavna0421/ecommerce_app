@@ -1,4 +1,4 @@
-import { ButtonBase } from "@mui/material";
+import { Button, ButtonBase, CardActions } from "@mui/material";
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
@@ -7,6 +7,7 @@ import Axios from "axios";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import * as React from "react";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import Cart from "../components/cart/Cart";
 import {
   default as CustomDrawer,
@@ -16,6 +17,9 @@ import Header from "../components/header/Header";
 import WishlistCart from "../components/wishlistItem/wishlist";
 import { useCartStore } from "../stores/useCartStore";
 import MuiImageSlider from "mui-image-slider";
+import styles from "./id.module.css";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import { usewishlistStore } from "../stores/usewishlistcart";
 
 const Img = styled("img")({
   margin: "auto",
@@ -32,6 +36,15 @@ const Post = ({ post }) => {
   const addToCart = useCartStore((state) => state.addToCart);
   const [isDrawerOpen, setIsDrawerOpen] = React.useState(false);
   const [isCartOpen, setisCartOpen] = React.useState(false);
+  const [toggleHeart, settoggleHeart] = React.useState(false);
+
+  const addtowishlist = usewishlistStore((state) => {
+    return state.wishlist;
+  });
+
+  const changeToggle = React.useCallback(() => {
+    settoggleHeart(!toggleHeart);
+  }, []);
 
   const handleCartIconClick = () => {
     setIsDrawerOpen(!isDrawerOpen);
@@ -39,7 +52,7 @@ const Post = ({ post }) => {
   const handleWishlistCart = () => {
     setisCartOpen(!isCartOpen);
   };
-  console.log("postimages", post.images);
+  // console.log("postimages", post.images);
 
   return (
     <>
@@ -82,16 +95,15 @@ const Post = ({ post }) => {
                     height: 200,
                   }}
                 > */}
-                <MuiImageSlider
-                  sx={{
-                    margin: "auto",
-                    display: "block",
-                    maxWidth: "100%",
-                    maxHeight: "100%",
-                  }}
+                {/* <MuiImageSlider
+                 className={styles.images}
                   images={post.images}
+                /> */}
+                <Img
+                  alt="phone"
+                  src={post.images[0]}
+                  className={styles.images}
                 />
-                {/* <Img alt="phone" src={post.thumbnail} /> */}
                 {/* </ButtonBase> */}
               </Grid>
               <Grid item xs={12} sm container>
@@ -108,42 +120,74 @@ const Post = ({ post }) => {
                       {post.description}
                     </Typography>
                   </Grid>
-                  <Grid item>
-                    <button
+
+                  <CardActions>
+                    <Button
+                      size="small"
                       style={{
                         backgroundColor: "black",
                         color: "white",
-                        borderRadius: "6px ",
-                        height: "45px",
-                        cursor: "pointer",
-                        width: "116px",
+                        border: "1px solid rgba(34, 34, 34, 0.5)",
+                        textTransform: "capitalize",
+                        width: "80px",
+                        height: "28px",
+                        fontWeight: 600,
                         fontStyle: "normal",
                       }}
+                      variant="outlined"
                       onClick={() => {
                         return addToCart(post);
                       }}
                     >
                       <Link
                         href="/checkoutPage"
-                        style={{
-                          textDecoration: "none",
-                          color: "white",
-                          border: "none",
-                        }}
+                        style={{ textDecoration: "none", color: "white" }}
                       >
                         {" "}
-                        <span
-                          style={{
-                            textAlign: "center",
-                            border: "none",
-                            fontSize: "16px",
-                          }}
-                        >
-                          Buy Now →
-                        </span>
+                        <span style={{ textAlign: "center" }}>Buy Now</span>
                       </Link>
-                    </button>
-                  </Grid>
+                    </Button>
+                    <Button
+                      size="small"
+                      style={{
+                        backgroundColor: "black",
+                        color: "white",
+                        border: "1px solid rgba(34, 34, 34, 0.5)",
+                        textTransform: "capitalize",
+                        width: "98px",
+                        height: "28px",
+                        fontWeight: 600,
+                        fontStyle: "normal",
+                      }}
+                      variant="outlined"
+                      onClick={() => {
+                        cogoToast.success("Product added successfully!");
+                        return addToCart(product), incrementQuantity();
+                      }}
+                    >
+                      Add to cart
+                    </Button>
+
+                    {toggleHeart ? (
+                      <FavoriteIcon
+                        className={styles.heartred}
+                        fontSize="small"
+                        onClick={() => {
+                          changeToggle();
+                          return addtowishlist(product);
+                        }}
+                      />
+                    ) : (
+                      <FavoriteBorderIcon
+                        className={styles.heart}
+                        fontSize="small"
+                        onClick={() => {
+                          changeToggle();
+                          return addtowishlist(post);
+                        }}
+                      />
+                    )}
+                  </CardActions>
                 </Grid>
                 <Grid item>
                   <Typography variant="subtitle1" component="div">
