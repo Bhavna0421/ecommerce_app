@@ -9,7 +9,7 @@
   width: 380px;
   height: 450px;
   background-color: white;
-  border: 1px solid black;
+  border: 1px solid #1976d2;
   padding: 20px;
   display: flex;
   flex-direction: column;

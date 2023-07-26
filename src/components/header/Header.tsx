@@ -9,9 +9,9 @@ import { usewishlistStore } from "@/stores/usewishlistcart";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 
 interface Props {
-  onCartIconClick: () => void;
-  oncartClick: () => void;
-  onCloseIcon: () => void;
+  onCartIconClick?: () => void;
+  oncartClick?: () => void;
+  onCloseIcon?: () => void;
 }
 
 export default function Header({ onCartIconClick, oncartClick }: Props) {
