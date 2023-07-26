@@ -40,7 +40,7 @@ export default function Header({ onCartIconClick, oncartClick }: Props) {
         }}
       >
         <Link
-          href="/"
+          href="/main"
           style={{
             textDecoration: "none",
             color: "white",
@@ -50,7 +50,7 @@ export default function Header({ onCartIconClick, oncartClick }: Props) {
           Home
         </Link>
         <Link
-          href="/"
+          href="/main"
           style={{
             textDecoration: "none",
             color: "white",
