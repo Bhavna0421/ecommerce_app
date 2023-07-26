@@ -201,7 +201,6 @@ export default function ProductCard({ product }: Props) {
                   variant="outlined"
                   onClick={() => {
                     cogoToast.success("Product added successfully!");
-                    console.log("product>>>>>>>>>>", product);
                     return addToCart(product), changequantitybutton();
                   }}
                 >
