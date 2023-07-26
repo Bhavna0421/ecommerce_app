@@ -1,0 +1,15 @@
+[{
+    "email":"bhavna@yopmail.com",
+    "password":"Admin@123",
+    "role":"admin",
+    "name": "storeAdmin",
+    "id": "001"
+
+},
+{
+    "email":"user@yopmail.com",
+    "password":"user@123",
+    "role":"user",
+    "name": "Buyer",
+    "id": "002"
+}]
