@@ -31,32 +31,29 @@ export default function ProductCard({ product }: Props) {
   });
 
   const [toggleHeart, settoggleHeart] = React.useState<Boolean>(false);
+  const [addcartclick, setAddcartclick] = React.useState<Boolean>(false);
   const [displayedQuantity, setDisplayedQuantity] = React.useState<
     number | any
   >((product.quantity as number) || 1);
-  const [displayeddecrementQuantity, setdisplayeddecrementQuantity] =
-    React.useState<number | any>((product.quantity as number) || 1);
 
   const incrementQuantity = () => {
     useCartStore.getState().increment(product.id);
-    // useCartStore.getState().decrement(product.id);
+
     setDisplayedQuantity((prevQuantity: any) => (prevQuantity as number) + 1);
-    // setDisplayedQuantity((prevQuantity: any) => (prevQuantity as number) - 1);
   };
   const decrementQuantity = () => {
     useCartStore.getState().decrement(product.id);
-    // useCartStore.getState().decrement(product.id);
-    setdisplayeddecrementQuantity(
-      (prevQuantity: any) => (prevQuantity as number) - 1
-    );
-    // setDisplayedQuantity((prevQuantity: any) => (prevQuantity as number) - 1);
+    setDisplayedQuantity((prevQuantity: any) => (prevQuantity as number) - 1);
   };
 
   const changeToggle = React.useCallback(() => {
     settoggleHeart(!toggleHeart);
   }, []);
-  // { logic for disable increment button according to need , Check if the product is in the cart to enable or disable the button}
 
+  const changequantitybutton = React.useCallback(() => {
+    setAddcartclick(!addcartclick);
+  }, []);
+  // { logic for disable increment button according to need , Check if the product is in the cart to enable or disable the button}
   // const isInCart = useCartStore
   //   .getState()
   //   .cart.some((item) => item.id === product.id);
@@ -141,53 +138,9 @@ export default function ProductCard({ product }: Props) {
               >
                 ${product.price}
               </Typography>
-              {/* <button
-                style={{
-                  color: "black",
-                  borderRadius: "4px",
-                  backgroundColor: "white",
-                  textTransform: "capitalize",
-                  width: "32px",
-                  height: "26px",
-                  border: "1px solid grey",
-                  fontStyle: "normal",
-                  cursor: "pointer",
-                }}
-                onClick={() => {
-                  cogoToast.info("quantity added successfully!");
-                  return incrementQuantity();
-                }}
-
-                // disabled={!isInCart}
-              >
-                +<span>{displayedQuantity}</span>
-              </button> */}
             </div>
-
             <CardActions>
-              {product?.id ? (
-                <Button
-                  size="small"
-                  style={{
-                    backgroundColor: "black",
-                    color: "white",
-                    border: "1px solid rgba(34, 34, 34, 0.5)",
-                    textTransform: "capitalize",
-                    width: "98px",
-                    height: "28px",
-                    fontWeight: 600,
-                    fontStyle: "normal",
-                  }}
-                  variant="outlined"
-                  onClick={() => {
-                    cogoToast.success("Product added successfully!");
-                    console.log("product>>>>>>>>>>", product);
-                    return addToCart(product), incrementQuantity();
-                  }}
-                >
-                  Add to cart
-                </Button>
-              ) : (
+              {addcartclick ? (
                 <>
                   <button
                     style={{
@@ -232,9 +185,29 @@ export default function ProductCard({ product }: Props) {
                     +
                   </button>
                 </>
+              ) : (
+                <Button
+                  size="small"
+                  style={{
+                    backgroundColor: "black",
+                    color: "white",
+                    border: "1px solid rgba(34, 34, 34, 0.5)",
+                    textTransform: "capitalize",
+                    width: "98px",
+                    height: "28px",
+                    fontWeight: 600,
+                    fontStyle: "normal",
+                  }}
+                  variant="outlined"
+                  onClick={() => {
+                    cogoToast.success("Product added successfully!");
+                    console.log("product>>>>>>>>>>", product);
+                    return addToCart(product), changequantitybutton();
+                  }}
+                >
+                  Add to cart
+                </Button>
               )}
-
-              {/* Buy Now button  */}
 
               <Button
                 size="small"

@@ -20,6 +20,7 @@ import MuiImageSlider from "mui-image-slider";
 import styles from "./id.module.css";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { usewishlistStore } from "../stores/usewishlistcart";
+import cogoToast from "cogo-toast";
 
 const Img = styled("img")({
   margin: "auto",
@@ -37,6 +38,10 @@ const Post = ({ post }) => {
   const [isDrawerOpen, setIsDrawerOpen] = React.useState(false);
   const [isCartOpen, setisCartOpen] = React.useState(false);
   const [toggleHeart, settoggleHeart] = React.useState(false);
+  const [addcartclick, setAddcartclick] = React.useState(false);
+  const [displayedQuantity, setDisplayedQuantity] = React.useState(
+    post.quantity || 1
+  );
 
   const addtowishlist = usewishlistStore((state) => {
     return state.wishlist;
@@ -46,13 +51,21 @@ const Post = ({ post }) => {
     settoggleHeart(!toggleHeart);
   }, []);
 
+  const changequantitybutton = React.useCallback(() => {
+    setAddcartclick(!addcartclick);
+  });
+
   const handleCartIconClick = () => {
     setIsDrawerOpen(!isDrawerOpen);
   };
   const handleWishlistCart = () => {
     setisCartOpen(!isCartOpen);
   };
-  // console.log("postimages", post.images);
+
+  const incrementQuantity = () => {
+    useCartStore.getState().increment(post.id);
+    setDisplayedQuantity((prevQuantity) => prevQuantity + 1);
+  };
 
   return (
     <>
@@ -113,6 +126,7 @@ const Post = ({ post }) => {
                       gutterBottom
                       variant="subtitle1"
                       component="div"
+                      style={{ fontWeight: "bold" }}
                     >
                       {post.title}
                     </Typography>
@@ -147,26 +161,73 @@ const Post = ({ post }) => {
                         <span style={{ textAlign: "center" }}>Buy Now</span>
                       </Link>
                     </Button>
-                    <Button
-                      size="small"
-                      style={{
-                        backgroundColor: "black",
-                        color: "white",
-                        border: "1px solid rgba(34, 34, 34, 0.5)",
-                        textTransform: "capitalize",
-                        width: "98px",
-                        height: "28px",
-                        fontWeight: 600,
-                        fontStyle: "normal",
-                      }}
-                      variant="outlined"
-                      onClick={() => {
-                        cogoToast.success("Product added successfully!");
-                        return addToCart(product), incrementQuantity();
-                      }}
-                    >
-                      Add to cart
-                    </Button>
+                    {addcartclick ? (
+                      <>
+                        <button
+                          style={{
+                            color: "black",
+                            borderRadius: "4px",
+                            backgroundColor: "white",
+                            textTransform: "capitalize",
+                            width: "25px",
+                            height: "23px",
+                            border: "1px solid grey",
+                            fontStyle: "normal",
+                            cursor: "pointer",
+                          }}
+                          id="decrease"
+                          onClick={() => {
+                            decrementQuantity();
+                          }}
+                        >
+                          -
+                        </button>
+                        <span style={{ marginLeft: "5px" }} id="value">
+                          {" "}
+                          {displayedQuantity}
+                        </span>
+                        <button
+                          style={{
+                            color: "black",
+                            borderRadius: "4px",
+                            backgroundColor: "white",
+                            textTransform: "capitalize",
+                            width: "25px",
+                            height: "23px",
+                            border: "1px solid grey",
+                            fontStyle: "normal",
+                            cursor: "pointer",
+                          }}
+                          id="increase"
+                          onClick={() => {
+                            incrementQuantity();
+                          }}
+                        >
+                          +
+                        </button>
+                      </>
+                    ) : (
+                      <Button
+                        size="small"
+                        style={{
+                          backgroundColor: "black",
+                          color: "white",
+                          border: "1px solid rgba(34, 34, 34, 0.5)",
+                          textTransform: "capitalize",
+                          width: "98px",
+                          height: "28px",
+                          fontWeight: 600,
+                          fontStyle: "normal",
+                        }}
+                        variant="outlined"
+                        onClick={() => {
+                          cogoToast.success("Product added successfully!");
+                          return addToCart(post), changequantitybutton();
+                        }}
+                      >
+                        Add to cart
+                      </Button>
+                    )}
 
                     {toggleHeart ? (
                       <FavoriteIcon
@@ -174,7 +235,7 @@ const Post = ({ post }) => {
                         fontSize="small"
                         onClick={() => {
                           changeToggle();
-                          return addtowishlist(product);
+                          return addtowishlist(post);
                         }}
                       />
                     ) : (
@@ -190,7 +251,11 @@ const Post = ({ post }) => {
                   </CardActions>
                 </Grid>
                 <Grid item>
-                  <Typography variant="subtitle1" component="div">
+                  <Typography
+                    variant="subtitle1"
+                    component="div"
+                    style={{ fontWeight: "bold" }}
+                  >
                     ${post.price}
                   </Typography>
                 </Grid>

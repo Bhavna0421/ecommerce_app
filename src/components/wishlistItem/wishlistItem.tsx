@@ -3,6 +3,7 @@ import { ButtonBase, Grid, Paper, Typography } from "@mui/material";
 import cogoToast from "cogo-toast";
 import { Product } from "../../types";
 import Link from "next/link";
+import styles from '../wishlistItem/wishlistItem.module.css'
 
 interface Props {
   product: Product;
@@ -23,12 +24,7 @@ export default function WishlistItem({ product }: Props) {
       >
         <ButtonBase sx={{ width: 128, height: 128 }}>
           <img
-            style={{
-              margin: "auto",
-              display: "block",
-              maxWidth: "100%",
-              maxHeight: "100%",
-            }}
+          className={styles.images}
             alt="complex"
             src={product.images[0]}
           />

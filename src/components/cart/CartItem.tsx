@@ -1,5 +1,5 @@
 import { FaTrashAlt } from "react-icons/fa";
-
+import styles from "../cart/cartItem.module.css";
 import { ButtonBase, Grid, Paper, Typography } from "@mui/material";
 import { useCartStore } from "../../stores/useCartStore";
 import { Product } from "../../types";
@@ -25,12 +25,7 @@ export default function CartItem({ product }: Props) {
       >
         <ButtonBase sx={{ width: 128, height: 128 }}>
           <img
-            style={{
-              margin: "auto",
-              display: "block",
-              maxWidth: "100%",
-              maxHeight: "100%",
-            }}
+           className={styles.images}
             alt="complex"
             src={product.images[0]}
           />
