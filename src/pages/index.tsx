@@ -4,7 +4,7 @@ import Login from "../pages/login";
 export default function Home() {
   return (
     <>
-      <header
+      {/* <header
         style={{
           height: "75px",
           backgroundColor: "black",
@@ -14,7 +14,7 @@ export default function Home() {
           marginLeft: "-8px",
           marginRight: "-8px",
         }}
-      />
+      /> */}
       <Login/>
     </>
   );

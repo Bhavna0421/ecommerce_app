@@ -6,10 +6,10 @@ import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined
 const Login = () => {
   return (
     <>
-      {/* <div style={{ textAlign: "center", marginTop: "25px" }}>
-        <h1>Login Page</h1>
-      </div> */}
-      <div className={styles.container}>
+      <div
+        className={styles.container}
+        // style={{  color: "white" }}
+      >
         <div className={styles.formbox}>
           <h4 style={{ textAlign: "center" }}>
             <AccountCircleOutlinedIcon
@@ -21,14 +21,18 @@ const Login = () => {
             <div style={{ marginBottom: "3px" }}>
               <TextField
                 type="text"
-                style={{ borderRadius: "1px solid #1976d2" }}
+                style={{ borderRadius: "1px solid #1976d2", color: "white" }}
+                InputProps={{ style: { color: "black" } }} // To change the color of input text
+                InputLabelProps={{ style: { color: "black" } }} // To change the color of placeholder/label
                 placeholder="Username"
               />
             </div>
             <div className="input-group mb-3">
               <TextField
                 type="password"
-                style={{ borderRadius: "1px solid #1976d2" }}
+                style={{ borderRadius: "1px solid #1976d2", color: "white" }}
+                InputProps={{ style: { color: "black" } }}
+                InputLabelProps={{ style: { color: "blacks" } }}
                 placeholder="Password"
               />
             </div>
