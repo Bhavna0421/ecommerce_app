@@ -10,7 +10,30 @@ import {
   TableContainer,
   TableHead,
   TableRow,
+  styled,
+  tableCellClasses,
 } from "@mui/material";
+
+const StyledTableCell = styled(TableCell)(({ theme }) => ({
+  [`&.${tableCellClasses.head}`]: {
+    // backgroundColor: theme.palette.common.black,
+    color: theme.palette.common.white,
+    fontSize: 16,
+  },
+  [`&.${tableCellClasses.body}`]: {
+    fontSize: 16,
+  },
+}));
+
+const StyledTableRow = styled(TableRow)(({ theme }) => ({
+  "&:nth-of-type(odd)": {
+    backgroundColor: theme.palette.action.hover,
+  },
+  // hide last border
+  "&:last-child td, &:last-child th": {
+    border: 0,
+  },
+}));
 
 const AdminPage = () => {
   const user = "admin";
@@ -43,39 +66,43 @@ const AdminPage = () => {
   return (
     <>
       <AdminHeader />
-      <h1 style={{ textAlign: "center", marginTop: "80px" }}>welcome Admin</h1>
+      <h1 style={{ textAlign: "center", marginTop: "80px" }}></h1>
       <Paper>
         <TableContainer>
           <Table sx={{ minWidth: 60 }} aria-label="simple table">
             <TableHead>
-              <TableRow>
-                <TableCell style={{ fontWeight: "bold" }}>
+              <StyledTableRow
+                style={{
+                  // minWidth: column.minWidth,
+                  backgroundColor: "#1976d2",
+                  color: "#fff",
+                }}
+              >
+                <StyledTableCell style={{ fontWeight: "bold" }}>
                   Product Name
-                </TableCell>
-                <TableCell align="right" style={{ fontWeight: "bold" }}>
+                </StyledTableCell>
+                <StyledTableCell align="right" style={{ fontWeight: "bold" }}>
                   Price&nbsp;($)
-                </TableCell>
-                <TableCell align="right" style={{ fontWeight: "bold" }}>
+                </StyledTableCell>
+                <StyledTableCell align="right" style={{ fontWeight: "bold" }}>
                   Rating
-                </TableCell>
-                {/* <TableCell align="right">Quantity&nbsp;(no.)</TableCell> */}
-              </TableRow>
+                </StyledTableCell>
+              </StyledTableRow>
             </TableHead>
             <TableBody>
               {cart?.map((product) => (
-                <TableRow
-                  key={product.id}
-                  //   sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                >
-                  <TableCell component="th" scope="row">
+                <StyledTableRow key={product.id}>
+                  <StyledTableCell component="th" scope="row">
                     {product.title}
-                  </TableCell>
-                  <TableCell align="right">&nbsp;${product.price}</TableCell>
-                  <TableCell align="right">
+                  </StyledTableCell>
+                  <StyledTableCell align="right">
+                    &nbsp;${product.price}
+                  </StyledTableCell>
+                  <StyledTableCell align="right">
                     {renderRatingStars(product.rating)}
-                  </TableCell>
+                  </StyledTableCell>
                   {/* <TableCell align="right">{product.quantity}</TableCell> */}
-                </TableRow>
+                </StyledTableRow>
               ))}
             </TableBody>
           </Table>
