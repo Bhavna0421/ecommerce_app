@@ -36,7 +36,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 }));
 
 const AdminPage = () => {
-  const user = "admin";
+  // const user = "admin";
   const cart = useFromStore(useCartStore, (state) => state.cart);
   const renderRatingStars = (rating: any) => {
     const filledStars = Math.floor(rating);
@@ -111,3 +111,29 @@ const AdminPage = () => {
 };
 
 export default AdminPage;
+
+// pages/adminpage.js
+// import React from 'react';
+// import { useUserStore } from '../hooks/useUserStore';
+
+// const AdminPage = () => {
+//   const { userRole } = useUserStore();
+
+//   // Check if the user is logged in as an admin
+//   if (userRole !== 'admin') {
+//     // If not an admin, redirect to the main page (or handle unauthorized access)
+//     // For this example, redirect to the main page
+//     return <p>You are not authorized to access this page.</p>;
+//   }
+
+//   return (
+//     <div>
+//       <h2>Admin Page</h2>
+//       <p>Welcome, Admin!</p>
+//       {/* Your admin-specific content here */}
+//     </div>
+//   );
+// };
+
+// export default AdminPage;
+

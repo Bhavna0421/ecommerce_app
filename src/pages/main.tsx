@@ -11,11 +11,14 @@ import CustomDrawer from "../components/header/Drawer";
 import Topcontent from "@/components/topcontent/top";
 import Link from "next/link";
 import AdminPage from "./adminpage";
+import useUserStore from "@/stores/useUserStore";
+
 
 const Home: NextPage = () => {
   const { data: session } = useSession<any>();
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [isCartOpen, setisCartOpen] = useState(false);
+  const userRole = useUserStore();
 
   const { products, isLoading, error, fetchData } = useProductsStore();
   console.log("data>>>>>>>>", session?.user);
@@ -35,7 +38,9 @@ const Home: NextPage = () => {
   console.log("user>>>>>>>", user);
   return (
     <>
-      {/* {user?.includes("user") ? ( */}
+      {userRole === "admin" ? (
+        <AdminPage />
+      ) : (
         <>
           <Header
             onCartIconClick={handleCartIconClick}
@@ -63,7 +68,6 @@ const Home: NextPage = () => {
                 style={{
                   textAlign: "center",
                   fontWeight: "14px",
-                  // marginTop: "15px",
                 }}
               >
                 Loading...
@@ -73,11 +77,7 @@ const Home: NextPage = () => {
             )}
           </main>
         </>
-      {/* // ) : ( */}
-        {/* <Link href="/adminpage">
-          <AdminPage />
-        </Link> */}
-      {/* // )} */}
+      )}
     </>
   );
 };
