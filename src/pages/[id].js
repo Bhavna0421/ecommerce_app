@@ -67,6 +67,11 @@ const Post = ({ post }) => {
     setDisplayedQuantity((prevQuantity) => prevQuantity + 1);
   };
 
+  const decrementQuantity = () => {
+    useCartStore.getState().decrement(post.id);
+    setDisplayedQuantity((prevQuantity) => prevQuantity - 1);
+  };
+
   return (
     <>
       <Header
@@ -138,7 +143,7 @@ const Post = ({ post }) => {
                   <CardActions>
                     <Button
                       size="small"
-                     className={styles.button}
+                      className={styles.button}
                       variant="outlined"
                       onClick={() => {
                         return addToCart(post);
@@ -164,9 +169,12 @@ const Post = ({ post }) => {
                             height: "23px",
                             border: "1px solid grey",
                             fontStyle: "normal",
-                            cursor: "pointer",
+                            opacity: displayedQuantity === 1 ? 0.3 : 1,
+                            pointerEvents:
+                              displayedQuantity === 1 ? "none" : "auto",
                           }}
                           id="decrease"
+                          disabled={displayedQuantity === 1}
                           onClick={() => {
                             decrementQuantity();
                           }}

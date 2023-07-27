@@ -1,5 +1,5 @@
 import { User } from "next-auth";
 
-export interface IuserService {
+export interface IUserService {
   signInCredentials(email: string, password: string): Promise<User> | User;
 }

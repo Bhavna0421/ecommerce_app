@@ -148,8 +148,7 @@ export default function ProductCard({ product }: Props) {
                       height: "23px",
                       border: "1px solid grey",
                       fontStyle: "normal",
-                      cursor: "pointer",
-                      opacity: displayedQuantity === 1 ? 0.5 : 1,
+                      opacity: displayedQuantity === 1 ? 0.3 : 1,
                       pointerEvents: displayedQuantity === 1 ? "none" : "auto",
                     }}
                     id="decrease"
