@@ -66,14 +66,14 @@ const AdminPage = () => {
   return (
     <>
       <AdminHeader />
-      <h1 style={{ textAlign: "center", marginTop: "80px" }}>welcome Admin</h1>
+      <h1 style={{ textAlign: "center", marginTop: "80px" }}></h1>
       <Paper>
         <TableContainer>
           <Table sx={{ minWidth: 60 }} aria-label="simple table">
             <TableHead>
               <StyledTableRow style={{
                     // minWidth: column.minWidth,
-                    backgroundColor: "#1976d2",
+                    backgroundColor: "grey",
                     color: "#fff",
                   }}>
                 <StyledTableCell>Product Name</StyledTableCell>

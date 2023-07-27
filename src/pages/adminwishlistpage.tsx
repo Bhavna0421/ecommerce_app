@@ -74,7 +74,7 @@ const AdminPage = () => {
               <StyledTableRow
                 style={{
                   // minWidth: column.minWidth,
-                  backgroundColor: "#1976d2",
+                  backgroundColor: "grey",
                   color: "#fff",
                 }}
               >
