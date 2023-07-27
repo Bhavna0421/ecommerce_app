@@ -1,20 +1,6 @@
-import { usewishlistStore } from "@/stores/usewishlistcart";
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import { Badge, IconButton } from "@mui/material";
 import Link from "next/link";
-import useFromStore from "../../hooks/useFromStore";
-import { useCartStore } from "../../stores/useCartStore";
 
-interface Props {
-  onCartIconClick?: () => void;
-  oncartClick?: () => void;
-  onCloseIcon?: () => void;
-}
-
-export default function AdminHeader({ onCartIconClick, oncartClick }: Props) {
-  const cart: any = useFromStore(useCartStore, (state) => state.cart);
-  const whishlist: any = useFromStore(usewishlistStore, (state) => state.cart);
-
+export default function AdminHeader() {
   return (
     <header
       style={{
@@ -37,7 +23,7 @@ export default function AdminHeader({ onCartIconClick, oncartClick }: Props) {
         }}
       >
         <div
-        style={{
+          style={{
             marginLeft: "-60px",
             display: "flex",
             columnGap: "3rem",

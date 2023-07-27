@@ -1,12 +1,10 @@
-import useFromStore from "../../hooks/useFromStore";
+import { usewishlistStore } from "@/stores/usewishlistcart";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import { Badge, IconButton } from "@mui/material";
 import Link from "next/link";
 import { FiShoppingCart } from "react-icons/fi";
+import useFromStore from "../../hooks/useFromStore";
 import { useCartStore } from "../../stores/useCartStore";
-import React from "react";
-import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
-import { usewishlistStore } from "@/stores/usewishlistcart";
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 
 interface Props {
   onCartIconClick?: () => void;
