@@ -18,9 +18,9 @@ const Home: NextPage = () => {
   const [isCartOpen, setisCartOpen] = useState(false);
 
   const { products, isLoading, error, fetchData } = useProductsStore();
-console.log("data>>>>>>>>",session?.user)
-  const user = session?.user;
-  // const user = "user";
+  console.log("data>>>>>>>>", session?.user);
+  // const user = session?.user;
+  const user = "user";
 
   useEffect(() => {
     fetchData();
@@ -32,14 +32,10 @@ console.log("data>>>>>>>>",session?.user)
   const handleWishlistCart = () => {
     setisCartOpen(!isCartOpen);
   };
-console.log("user>>>>>>>",user)
+  console.log("user>>>>>>>", user);
   return (
     <>
-      {user?.role?.includes("admin") ? (
-        <Link href="/adminpage">
-          <AdminPage />
-        </Link>
-      ) : (
+      {/* {user?.includes("user") ? ( */}
         <>
           <Header
             onCartIconClick={handleCartIconClick}
@@ -77,7 +73,11 @@ console.log("user>>>>>>>",user)
             )}
           </main>
         </>
-      )}
+      {/* // ) : ( */}
+        {/* <Link href="/adminpage">
+          <AdminPage />
+        </Link> */}
+      {/* // )} */}
     </>
   );
 };

@@ -3,7 +3,12 @@ import { Button, TextField, Typography } from "@mui/material";
 import Link from "next/link";
 import styles from "../pages/login.module.css";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
+import { useSession } from "next-auth/react";
 const Login = () => {
+  const { data: session } = useSession<any>();
+  const user = session?.user;
+  console.log("data>>>>>>>>", session?.user);
+  console.log("user>>>>>",user)
   return (
     <>
       <div
