@@ -13,14 +13,14 @@ import Link from "next/link";
 import AdminPage from "./adminpage";
 
 const Home: NextPage = () => {
-  // const {data:session} = useSession<any>();
+  const { data: session } = useSession<any>();
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [isCartOpen, setisCartOpen] = useState(false);
 
   const { products, isLoading, error, fetchData } = useProductsStore();
-
-  // const user = session?.user
-  const user = "user";
+console.log("data>>>>>>>>",session?.user)
+  const user = session?.user;
+  // const user = "user";
 
   useEffect(() => {
     fetchData();
@@ -32,10 +32,14 @@ const Home: NextPage = () => {
   const handleWishlistCart = () => {
     setisCartOpen(!isCartOpen);
   };
-
+console.log("user>>>>>>>",user)
   return (
     <>
-      {user?.includes("admin") ? (
+      {user?.role?.includes("admin") ? (
+        <Link href="/adminpage">
+          <AdminPage />
+        </Link>
+      ) : (
         <>
           <Header
             onCartIconClick={handleCartIconClick}
@@ -73,10 +77,6 @@ const Home: NextPage = () => {
             )}
           </main>
         </>
-      ) : (
-        <Link href="/adminpage">
-          <AdminPage />
-        </Link>
       )}
     </>
   );
